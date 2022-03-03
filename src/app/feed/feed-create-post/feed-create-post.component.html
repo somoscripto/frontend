@@ -1,6 +1,6 @@
 <!-- Be careful when modifying this.
      It's used by both the feed and that "create post page."-->
-<div [ngClass]="{'formbg': !parentPost }">
+<div [ngClass]="{ formbg: !parentPost }">
   <!-- Avatar + Input -->
   <div class="d-flex align-items-top pt-15px pr-15px pl-15px">
     <div>
@@ -43,21 +43,17 @@
       </div>
       <!-- Video is processing - please wait -->
       <div class="d-flex flex-column align-items-center" *ngIf="!isComment && postVideoSrc && !readyToStream">
-        <div>Video Processing In Progress</div>
+        <div>{{ "Video-Processing-In-Progress" | translate }}</div>
         <simple-center-loader [height]="150"></simple-center-loader>
       </div>
       <!-- Video Player -->
-      <div
-        *ngIf="!isComment && postVideoSrc && readyToStream"
-        class="feed-post__video-container"
-      >
+      <div *ngIf="!isComment && postVideoSrc && readyToStream" class="feed-post__video-container">
         <iframe
           [src]="postVideoSrc | sanitizeVideoUrl"
           allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
           allowfullscreen
           class="feed-post__video"
-        >
-        </iframe>
+        ></iframe>
       </div>
 
       <!-- Embedded Content -->
@@ -72,13 +68,13 @@
           [src]="constructedEmbedURL | sanitizeEmbed"
           frameborder="0"
           allow="picture-in-picture; clipboard-write; encrypted-media; gyroscope; accelerometer;"
-          [ngStyle]="{'max-width': EmbedUrlParserService.isValidTiktokEmbedURL(constructedEmbedURL) ? '325px' : '' }"
+          [ngStyle]="{ 'max-width': EmbedUrlParserService.isValidTiktokEmbedURL(constructedEmbedURL) ? '325px' : '' }"
           allowfullscreen
         ></iframe>
       </div>
       <!-- Video Upload Progress bar -->
       <div class="d-flex flex-column align-items-center" *ngIf="videoUploadPercentage !== null">
-        <div>Uploading: {{videoUploadPercentage}}% Complete</div>
+        <div>{{ "Uploading" | translate }}: {{ videoUploadPercentage }}% {{ "Complete" | translate }}</div>
         <mat-progress-bar [value]="videoUploadPercentage" [mode]="'determinate'"></mat-progress-bar>
       </div>
     </div>
@@ -90,16 +86,11 @@
     type="url"
     [(ngModel)]="embedURL"
     (ngModelChange)="setEmbedURL()"
-    placeholder="Embed Youtube, Vimeo, TikTok, Giphy, Spotify, SoundCloud, or Twitch"
+    placeholder="{{ 'Embed-Youtube-Vimeo-TikTok-Giphy-Spotify-SoundCloud-or-Twitch' | translate }}"
   />
 </div>
 <div class="flex-fill px-15px br-10px" [ngClass]="{ 'pt-10px': parentPost }" *ngIf="showImageLink">
-  <input
-    class="br-3px"
-    type="url"
-    [(ngModel)]="postImageSrc"
-    placeholder="Link to Arweave image"
-  />
+  <input class="br-3px" type="url" [(ngModel)]="postImageSrc" placeholder="{{ 'Link-to-Arweave-image' | translate }}" />
 </div>
 <!-- Image Upload + Post Buttons -->
 <div class="d-flex justify-content-end align-items-center pr-15px pb-15px mt-10px">
@@ -116,11 +107,14 @@
   </span>
   <i
     class="fas fa-code fa-lg text-grey8A cursor-pointer fs-18px"
-    [ngClass]="{'pr-15px': !isComment}"
+    [ngClass]="{ 'pr-15px': !isComment }"
     (click)="showEmbedURL = !showEmbedURL"
   ></i>
   <ng-container *ngIf="!isComment">
-    <i class="fas fa-external-link-alt fa-lg text-grey8A cursor-pointer pr-15px fs-18px" (click)="showImageLink = !showImageLink"></i>
+    <i
+      class="fas fa-external-link-alt fa-lg text-grey8A cursor-pointer pr-15px fs-18px"
+      (click)="showImageLink = !showImageLink"
+    ></i>
     <input #videoInput class="d-none" type="file" accept="video/*" (change)="_handleFilesInput($event.target.files)" />
     <i
       class="fas fa-video fa-lg text-grey8A cursor-pointer pr-15px feed-create-post__image-icon"
@@ -141,6 +135,6 @@
     }"
     (click)="_createPost()"
   >
-    Post
+    {{ "Post" | translate }}
   </button>
 </div>

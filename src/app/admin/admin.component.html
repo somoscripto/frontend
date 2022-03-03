@@ -6,7 +6,7 @@
   >
     <div class="d-flex align-items-center">
       <top-bar-mobile-navigation-control class="mr-15px d-lg-none d-inline-block"></top-bar-mobile-navigation-control>
-      Admin
+      {{ "Admin" | translate }}
     </div>
   </div>
 
@@ -20,11 +20,7 @@
         (change)="_tabClicked($event)"
         [(ngModel)]="activeTab"
       >
-        <option
-          *ngFor="let option of adminTabs"
-          [value]="option"
-          class="fs-15px text-grey5 font-weight-bold"
-        >
+        <option *ngFor="let option of adminTabs" [value]="option" class="fs-15px text-grey5 font-weight-bold">
           {{ option }}
         </option>
       </select>
@@ -32,11 +28,15 @@
   </div>
 
   <!-- Post Whitelist Selector -->
-  <div style="overflow-y: scroll" class="disable-scrollbars" *ngIf="activeTab == 'Posts' && adminPosts.length != 0 && !loadingPosts">
+  <div
+    style="overflow-y: scroll"
+    class="disable-scrollbars"
+    *ngIf="activeTab == 'Posts' && adminPosts.length != 0 && !loadingPosts"
+  >
     <div
       class="w-100 d-flex justify-content-start py-10px pl-15px fs-15px fc-muted border-bottom border-color-grey light-grey-divider"
     >
-      Select posts below to show them in the featured feed.
+      {{ "Select-posts-below-to-show-them-in-the-featured-feed" | translate }}.
     </div>
     <tab-selector
       [tabs]="adminPostTabs"
@@ -46,16 +46,15 @@
     <div
       *ngIf="activePostTab == POSTS_BY_DESO_TAB"
       class="w-100 px-15px py-5px fs-15px border-bottom border-color-grey d-flex"
-      style="justify-content: flex-start; align-items: center;"
+      style="justify-content: flex-start; align-items: center"
     >
       <div>
         <mat-form-field appearance="fill" class="pb-0">
-          <mat-label for="time-window" class="pr-10px mb-0" style="height: auto; vertical-align: middle;">
-            Time Window:
+          <mat-label for="time-window" class="pr-10px mb-0" style="height: auto; vertical-align: middle">
+            {{ "Time-Window" | translate }}:
           </mat-label>
-          <mat-select id="time-window" style="height: auto; vertical-align: middle;" [(value)]="selectedTimeWindow">
-            <mat-option *ngFor="let timeWindow of timeWindowOptions | keyvalue"
-                        [value]="timeWindow.value">
+          <mat-select id="time-window" style="height: auto; vertical-align: middle" [(value)]="selectedTimeWindow">
+            <mat-option *ngFor="let timeWindow of timeWindowOptions | keyvalue" [value]="timeWindow.value">
               {{ timeWindow.key }}
             </mat-option>
           </mat-select>
@@ -64,13 +63,12 @@
       <div class="p-15px">
         <a
           class="btn btn-primary"
-          style="vertical-align: middle; float: right; text-align: center;"
+          style="vertical-align: middle; float: right; text-align: center"
           (click)="_searchPostsByDESO()"
         >
-          Search
+          {{ "Search" | translate }}
         </a>
       </div>
-
     </div>
     <simple-center-loader *ngIf="searchingForPostsByDESO; else showPosts"></simple-center-loader>
     <ng-template #showPosts>
@@ -100,8 +98,8 @@
       class="w-100 py-15px d-flex align-items-center justify-content-center cursor-pointer creator-leaderboard__load-more"
       (click)="_loadPosts()"
     >
-      <div *ngIf="!loadingMore" class="fs-15px">Load More</div>
-      <div *ngIf="loadingMore" class="fs-15px">Loading...</div>
+      <div *ngIf="!loadingMore" class="fs-15px">{{ "Load-More" | translate }}</div>
+      <div *ngIf="loadingMore" class="fs-15px">{{ "Loading" | translate }}...</div>
     </div>
   </div>
 
@@ -110,7 +108,7 @@
     class="d-flex flex-column align-items-center justify-content-center"
     style="height: 400px"
   >
-    <div class="fc-muted fs-15px">No posts found.</div>
+    <div class="fc-muted fs-15px">{{ "No-posts-found" | translate }}.</div>
   </div>
 
   <simple-center-loader *ngIf="activeTab == 'Posts' && loadingPosts"></simple-center-loader>
@@ -120,19 +118,18 @@
     <div
       class="w-100 d-flex justify-content-start py-10px pl-15px fs-15px fc-muted border-bottom border-color-grey light-grey-divider"
     >
-      ☠️ Use the controls below to remove profiles from the UI. Profiles that are "Blacklisted" will be removed
-      everywhere. Profiles that are "Greylisted" will be selectively removed.
+      ☠️ {{ "Use-the-controls-below-to-remove" }}.
     </div>
 
     <!-- BLACKLIST -->
     <div class="fs-15px font-weight-bold mt-15px mb-15px px-15px">
-      Remove everywhere:
+      {{ "Remove-everywhere" | translate }}:
       <div class="d-flex">
         <input
           [(ngModel)]="blacklistPubKeyOrUsername"
           (keydown.enter)="updateProfileModerationLevel('blacklist')"
           class="form-control w-100 fs-15px lh-15px"
-          placeholder="Enter a username or public key."
+          placeholder="{{ 'Enter-a-username-or-public-key' | translate }}."
         />
         <button
           *ngIf="!submittingBlacklistUpdate"
@@ -140,51 +137,60 @@
           class="btn btn-dark fs-15px ml-5px"
           style="width: 150px"
         >
-          Blacklist
+          {{ "Blacklist" | translate }}
         </button>
-        <button *ngIf="submittingBlacklistUpdate" class="btn btn-dark fs-15px ml-5px" disabled>Working...</button>
+        <button *ngIf="submittingBlacklistUpdate" class="btn btn-dark fs-15px ml-5px" disabled>
+          {{ "Working" | translate }}...
+        </button>
       </div>
       <div *ngIf="updateProfileSuccessType === 'blacklist'" class="font-weight-normal fs-12px" style="color: green">
         <i class="far fa-check-circle"></i>
-        Successfully added user to blacklist.
+        {{ "Successfully-added-user-to-blacklist" | translate }}.
       </div>
     </div>
 
     <!-- GRAYLIST -->
     <div class="fs-15px font-weight-bold mt-15px mb-15px px-15px">
-      Remove from leaderboards:
+      {{ "Remove-from-leaderboards" | translate }}:
       <div class="d-flex">
         <input
           [(ngModel)]="graylistPubKeyOrUsername"
           (keydown.enter)="updateProfileModerationLevel('graylist')"
           class="form-control w-100 fs-15px lh-15px"
-          placeholder="Enter a username or public key."
+          placeholder="{{ 'Enter-a-username-or-public-key' | translate }}."
         />
         <button
           *ngIf="!submittingGraylistUpdate"
           (click)="updateProfileModerationLevel('graylist')"
           class="btn btn-secondary fs-15px ml-5px"
-          style="width: 150px;background-color:#606060 !important;"
+          style="width: 150px; background-color: #606060 !important"
         >
-          Graylist&nbsp;
+          {{ "Graylist" | translate }}&nbsp;
         </button>
-        <button *ngIf="submittingGraylistUpdate" class="btn btn-secondary fs-15px ml-5px" style="background-color:#606060 !important;" disabled>Working...</button>
+        <button
+          *ngIf="submittingGraylistUpdate"
+          class="btn btn-secondary fs-15px ml-5px"
+          style="background-color: #606060 !important"
+          disabled
+        >
+          {{ "Working" | translate }}...
+        </button>
       </div>
       <div *ngIf="updateProfileSuccessType === 'graylist'" class="font-weight-normal fs-12px" style="color: green">
         <i class="far fa-check-circle"></i>
-        Successfully added user to graylist.
+        {{ "Successfully-added-user-to-graylist" | translate }}.
       </div>
     </div>
 
     <!-- REMOVE FROM BLACKLISTS -->
     <div class="fs-15px font-weight-bold mt-15px px-15px pb-30px border-bottom border-color-grey">
-      Remove from blacklist and graylist:
+      {{ "Remove-from-blacklist-and-graylist" | translate }}:
       <div class="d-flex">
         <input
           [(ngModel)]="unrestrictPubKeyOrUsername"
           (keydown.enter)="updateProfileModerationLevel('unrestrict')"
           class="form-control w-100 fs-15px lh-15px"
-          placeholder="Enter a username or public key."
+          placeholder="{{ 'Enter-a-username-or-public-key' | translate }}."
         />
         <button
           *ngIf="!submittingUnrestrictUpdate"
@@ -192,38 +198,37 @@
           class="btn btn-danger fs-15px ml-5px border border-color-grey"
           style="width: 150px"
         >
-          Unrestrict
+          {{ "Unrestrict" | translate }}
         </button>
         <button
           *ngIf="submittingUnrestrictUpdate"
           class="btn btn-danger fs-15px ml-5px border border-color-grey"
           disabled
         >
-          Working...
+          {{ "Working" | translate }}...
         </button>
       </div>
       <div *ngIf="updateProfileSuccessType === 'restrict'" class="font-weight-normal fs-12px" style="color: green">
         <i class="far fa-check-circle"></i>
-        Successfully removed user from blacklist and graylist.
+        {{ "Successfully-removed-user-from-blacklist-and-graylist" | translate }}.
       </div>
     </div>
 
     <div
       class="w-100 d-flex justify-content-start py-10px pl-15px fs-15px fc-muted border-bottom border-color-grey light-grey-divider"
     >
-      ⭐ Use the controls below to Whitelist profiles. Profiles that are Whitelisted will automatically have up to five
-      of their posts added to the global feed per day.
+      ⭐ {{ "Use-the-controls-below-to-Whitelist-profiles" | translate }}
     </div>
 
     <!-- WHITELIST -->
     <div class="fs-15px font-weight-bold mt-15px mb-15px px-15px">
-      Whitelist user:
+      {{ "Whitelist-user" | translate }}:
       <div class="d-flex">
         <input
           [(ngModel)]="whitelistPubKeyOrUsername"
           (keydown.enter)="whitelistClicked()"
           class="form-control w-100 fs-15px lh-15px"
-          placeholder="Enter a username or public key."
+          placeholder="{{ 'Enter-a-username-or-public-key' | translate }}."
         />
         <button
           *ngIf="!submittingWhitelistUpdate"
@@ -231,31 +236,31 @@
           class="btn-default btn-light fs-15px ml-5px border border-color-grey"
           style="width: 150px"
         >
-          Whitelist
+          {{ "Whitelist" | translate }}
         </button>
         <button
           *ngIf="submittingWhitelistUpdate"
           class="btn-default btn-light fs-15px ml-5px border border-color-grey"
           disabled
         >
-          Working...
+          {{ "Working" | translate }}...
         </button>
       </div>
       <div *ngIf="whitelistUpdateSuccess" class="font-weight-normal fs-12px" style="color: green">
         <i class="far fa-check-circle"></i>
-        Successfully added user to whitelist.
+        {{ "Successfully-added-user-to-whitelist" | translate }}.
       </div>
     </div>
 
     <!-- REMOVE FROM WHITELIST -->
     <div class="fs-15px font-weight-bold mt-15px px-15px pb-30px border-bottom border-color-grey">
-      Remove user from whitelist:
+      {{ "Remove-user-from-whitelist" | translate }}:
       <div class="d-flex">
         <input
           [(ngModel)]="unwhitelistPubKeyOrUsername"
           (keydown.enter)="unwhitelistClicked()"
           class="form-control w-100 fs-15px lh-15px"
-          placeholder="Enter a username or public key."
+          placeholder="{{ 'Enter-a-username-or-public-key' | translate }}."
         />
         <button
           *ngIf="!submittingUnwhitelistUpdate"
@@ -264,63 +269,63 @@
           style="width: 150px"
         >
           <i class="far fa-times-circle"></i>
-          Remove
+          {{ "Remove" | translate }}
         </button>
         <button
           *ngIf="submittingUnwhitelistUpdate"
           class="btn-default btn-light fs-15px ml-5px border border-color-grey"
           disabled
         >
-          Working...
+          {{ "Working" | translate }}...
         </button>
       </div>
       <div *ngIf="unwhitelistUpdateSuccess" class="font-weight-normal fs-12px" style="color: green">
         <i class="far fa-check-circle"></i>
-        Successfully removed user from whitelist.
+        {{ "Successfully-removed-user-from-whitelist" | translate }}.
       </div>
     </div>
 
     <div
       class="w-100 d-flex justify-content-start py-10px pl-15px fs-15px fc-muted border-bottom border-color-grey light-grey-divider"
     >
-      📞 Enter a username or public key below to wipe their phone registration.
+      📞 {{ "Enter-a-username-or-public-key-below-to-wipe-their-phone-registration" | translate }}.
     </div>
 
     <!-- Allow phone number re-registration -->
     <div class="fs-15px font-weight-bold mt-15px pb-30px px-15px border-bottom border-color-grey">
-      Allow phone number re-registration:
+      {{ "Allow phone number re-registration" | translate }}:
       <div class="d-flex">
         <input
           [(ngModel)]="removePhonePubKeyorUsername"
           (keydown.enter)="(submitRemovePhoneNumber)"
           class="form-control w-100 fs-15px lh-15px"
-          placeholder="Enter a username or public key."
+          placeholder="{{ 'Enter-a-username-or-public-key' | translate }}."
         />
         <button
           *ngIf="!submittingRemovePhone"
           (click)="submitRemovePhoneNumber()"
           class="btn-default btn-light fs-15px ml-5px border border-color-grey"
         >
-          Allow
+          {{ "Allow" | translate }}
         </button>
         <button
           *ngIf="submittingRemovePhone"
           class="btn-default btn-light fs-15px ml-5px border border-color-grey"
           disabled
         >
-          Working...
+          {{ "Working" | translate }}...
         </button>
       </div>
       <div *ngIf="updateProfileSuccessType === 'phone'" class="font-weight-normal fs-12px" style="color: green">
         <i class="far fa-check-circle"></i>
-        Success.
+        {{ "Success" | translate }}.
       </div>
     </div>
 
     <div
       class="w-100 d-flex justify-content-start py-10px pl-15px fs-15px fc-muted border-bottom border-color-grey light-grey-divider"
     >
-      🖥️ Dump blacklist / whitelist data.
+      🖥️ {{ "Dump-blacklist" | translate }} / {{ "whitelist-data" | translate }}.
     </div>
 
     <!-- PUBLIC KEYS IN THE DB -->
@@ -328,14 +333,14 @@
       <i *ngIf="!dbDetailsOpen" class="fas fa-caret-right"></i>
       <i *ngIf="dbDetailsOpen" class="fas fa-caret-down"></i>
       <span class="ml-15px">
-        <span *ngIf="!dbDetailsLoading">See what's in global state</span>
-        <span *ngIf="dbDetailsLoading">Loading...</span>
+        <span *ngIf="!dbDetailsLoading">{{ "See-what-s-in-global-state" | translate }}</span>
+        <span *ngIf="dbDetailsLoading">{{ "Loading" | translate }}...</span>
       </span>
       <div *ngIf="dbDetailsOpen && !dbDetailsLoading">
         <div class="mt-15px mb-15px">
-          --- Returned
+          --- {{ "Returned" | translate }}
           <span class="fc-blue">{{ userMetadataMapLength }}</span>
-          UserMetadata entries ---
+          {{ "UserMetadata-entries" | translate }} ---
         </div>
         <div *ngFor="let item of userMetadataMap | keyvalue: descOrder">
           <ul class="mb-5px">
@@ -344,15 +349,15 @@
               {{ item.key.slice(0, 15) }}...
               <ul>
                 <li>
-                  RemoveEverywhere:
+                  {{ "RemoveEverywhere" | translate }}:
                   <span class="fc-blue">{{ item.value.RemoveEverywhere }}</span>
                 </li>
                 <li>
-                  RemoveFromLeaderboard:
+                  {{ "RemoveFromLeaderboard" | translate }}:
                   <span class="fc-blue">{{ item.value.RemoveFromLeaderboard }}</span>
                 </li>
                 <li>
-                  WhitelistPosts:
+                  {{ "WhitelistPosts" | translate }}:
                   <span class="fc-blue">{{ item.value.WhitelistPosts }}</span>
                 </li>
               </ul>
@@ -365,18 +370,18 @@
     <div
       class="w-100 d-flex justify-content-start py-10px pl-15px fs-15px fc-muted border-bottom border-color-grey light-grey-divider"
     >
-      🚀 Get User Admin Data.
+      🚀 {{ "Get-User-Admin-Data" | translate }}.
     </div>
 
     <!-- Get User Admin Data -->
     <div class="fs-15px font-weight-bold mt-15px mb-15px px-15px">
-      Check Admin Data for Public Key:
+      {{ "Check-Admin-Data-for-Public-Key" | translate }}:
       <div class="d-flex">
         <input
           [(ngModel)]="getUserAdminDataPublicKey"
           (keydown.enter)="getUserAdminDataClicked()"
           class="form-control w-100 fs-15px lh-15px"
-          placeholder="Enter a public key."
+          placeholder="{{ 'Enter a public key' | translate }}."
         />
         <button
           *ngIf="!submittingGetUserAdminData"
@@ -384,87 +389,87 @@
           class="btn-default btn-light fs-15px ml-5px border border-color-grey"
           style="width: 150px"
         >
-          Search
+          {{ "Search" | translate }}
         </button>
         <button
           *ngIf="submittingGetUserAdminData"
           class="btn-default btn-light fs-15px ml-5px border border-color-grey"
           disabled
         >
-          Working...
+          {{ "Working" | translate }}...
         </button>
       </div>
       <div *ngIf="getUserAdminDataResponse" class="font-weight-normal fs-12px">
         <div class="admin__get-user-admin-data-line pt-15px">
-          <span>Username:</span>
+          <span>{{ "Username" | translate }}:</span>
           {{ getUserAdminDataResponse.Username }}
         </div>
         <div class="admin__get-user-admin-data-line pt-5px">
-          <span>Currently Verified:</span>
+          <span>{{ "Currently-Verified" | translate }}:</span>
           {{ getUserAdminDataResponse.IsVerified }}
         </div>
         <div class="admin__get-user-admin-data-line pt-5px">
-          <span>Last Verifier:</span>
+          <span>{{ "Last-Verifier" | translate }}:</span>
           {{ getUserAdminDataResponse.LastVerifierPublicKey }}
         </div>
         <div class="admin__get-user-admin-data-line pt-5px">
-          <span>Last Verify Remover:</span>
+          <span>{{ "Last-Verify-Remover" | translate }}:</span>
           {{ getUserAdminDataResponse.LastVerifyRemoverPublicKey }}
         </div>
         <div class="admin__get-user-admin-data-line pt-15px">
-          <span>Currently Whitelisted:</span>
+          <span>{{ "Currently-Whitelisted" | translate }}:</span>
           {{ getUserAdminDataResponse.IsWhitelisted }}
         </div>
         <div class="admin__get-user-admin-data-line pt-5px">
-          <span>Last Whitelister:</span>
+          <span>{{ "Last-Whitelister" | translate }}:</span>
           {{ getUserAdminDataResponse.LastWhitelisterPublicKey }}
         </div>
         <div class="admin__get-user-admin-data-line pt-5px">
-          <span>Last Whitelist Remover:</span>
+          <span>{{ "Last-Whitelist-Remover" | translate }}:</span>
           {{ getUserAdminDataResponse.LastWhitelistRemoverPublicKey }}
         </div>
         <div class="admin__get-user-admin-data-line pt-15px">
-          <span>Currently Graylisted:</span>
+          <span>{{ "Currently-Graylisted" | translate }}:</span>
           {{ getUserAdminDataResponse.IsGraylisted }}
         </div>
         <div class="admin__get-user-admin-data-line pt-5px">
-          <span>Last Graylister:</span>
+          <span>{{ "Last-Graylister" | translate }}:</span>
           {{ getUserAdminDataResponse.LastGraylisterPublicKey }}
         </div>
         <div class="admin__get-user-admin-data-line pt-5px">
-          <span>Last Graylist Remover:</span>
+          <span>{{ "Last-Graylist-Remover" | translate }}:</span>
           {{ getUserAdminDataResponse.LastGraylistRemoverPublicKey }}
         </div>
         <div class="admin__get-user-admin-data-line pt-15px">
-          <span>Currently Blacklisted:</span>
+          <span>{{ "Currently-Blacklisted" | translate }}:</span>
           {{ getUserAdminDataResponse.IsBlacklisted }}
         </div>
         <div class="admin__get-user-admin-data-line pt-5px">
-          <span>Last Blacklister:</span>
+          <span>{{ "Last-Blacklister" | translate }}:</span>
           {{ getUserAdminDataResponse.LastBlacklisterPublicKey }}
         </div>
         <div class="admin__get-user-admin-data-line pt-5px">
-          <span>Last Blacklist Remover:</span>
+          <span>{{ "Last-Blacklist-Remover" | translate }}:</span>
           {{ getUserAdminDataResponse.LastBlacklistRemoverPublicKey }}
         </div>
         <div class="admin__get-user-admin-data-line pt-15px">
-          <span>PhoneNumber:</span>
+          <span>{{ "PhoneNumber" | translate }}:</span>
           {{ getUserAdminDataResponse.PhoneNumber }}
         </div>
         <div class="admin__get-user-admin-data-line pt-5px">
-          <span>Email:</span>
+          <span>{{ "Email" | translate }}:</span>
           {{ getUserAdminDataResponse.Email }}
         </div>
         <div class="admin__get-user-admin-data-line pt-15px">
-          <span>Referral Code:</span>
+          <span>{{ "Referral-Code" | translate }}:</span>
           {{ getUserAdminDataResponse.ReferralHashBase58Check }}
         </div>
         <div class="admin__get-user-admin-data-line pt-5px">
-          <span>Jumio Starter Payment Txn ID:</span>
+          <span>{{ "Jumio-Starter-Payment-Txn-ID" | translate }}:</span>
           {{ getUserAdminDataResponse.JumioStarterDeSoTxnHashBase58Check }}
         </div>
         <div class="admin__get-user-admin-data-line pt-5px">
-          <span>Referrer Payment Txn ID:</span>
+          <span>{{ "Referrer-Payment-Txn-ID" | translate }}:</span>
           {{ getUserAdminDataResponse.ReferrerDeSoTxnHashBase58Check }}
         </div>
       </div>
@@ -476,7 +481,7 @@
     <div
       class="w-100 d-flex justify-content-start py-10px pl-15px fs-15px fc-muted border-bottom border-color-grey light-grey-divider"
     >
-      See the state of your deso node below.
+      {{ "See-the-state-of-your-deso-node-below" | translate }}.
     </div>
     <network-info class="w-100"></network-info>
   </div>
@@ -486,14 +491,14 @@
     <div
       class="w-100 d-flex justify-content-start py-10px pl-15px fs-15px fc-muted border-bottom border-color-grey light-grey-divider"
     >
-      See the state of your node's mempool below.
+      {{ "See-the-state-of-your-node-s-mempool-below" | translate }}.
     </div>
     <div class="px-15px py-30px border-bottom border-color-grey">
       <div class="container fs-15px">
         <div class="row no-gutters font-weight-bold border-bottom border-color-grey">
-          <div class="col">Txn Type</div>
-          <div class="col">Txn Count</div>
-          <div class="col">Total Bytes</div>
+          <div class="col">{{ "Txn-Type" | translate }}</div>
+          <div class="col">{{ "Txn-Count" | translate }}</div>
+          <div class="col">{{ "Total-Bytes" | translate }}</div>
         </div>
         <div *ngFor="let row of mempoolSummaryStats | keyvalue" class="row no-gutters pt-5px">
           <div class="col">
@@ -507,10 +512,10 @@
           </div>
         </div>
         <div *ngIf="mempoolTxnCount === 0" class="d-flex py-15px font-italic fc-muted">
-          Couldn't find any mempool transactions right now.
+          {{ "Couldn-t-find-any-mempool-transactions-right-now" | translate }}.
         </div>
         <div class="row no-gutters font-weight-bold border-top border-color-grey mt-5px">
-          <div class="col">Total</div>
+          <div class="col">{{ "Total" | translate }}</div>
           <div class="col">
             {{ mempoolTxnCount }}
           </div>
@@ -521,48 +526,46 @@
       </div>
     </div>
     <div *ngIf="!loadingNextBlockStats && nextBlockStats" class="w-100 p-30px fs-15px">
-      <div class="font-weight-bold border-bottom border-color-grey">Next block template</div>
+      <div class="font-weight-bold border-bottom border-color-grey">{{ "Next-block-template" | translate }}</div>
       <div class="pt-5px">
-        {{ nextBlockStats.TxnCount }} transaction
-        <span *ngIf="nextBlockStats.TxnCount > 1">s</span>
-        expected to mine in the next block.
+        {{ nextBlockStats.TxnCount }} {{ "transaction" | translate }}
+        <span *ngIf="nextBlockStats.TxnCount > 1">{{ "s" | translate }}</span>
+        {{ "expected-to-mine-in-the-next-block" | translate }}.
       </div>
 
       <div class="pt-15px font-weight-bold border-bottom border-color-grey">
-        Next failing txn
+        {{ "Next-failing-txn" | translate }}
         <span *ngIf="nextBlockStats.FailingTxnMinutesSinceAdded" class="font-weight-normal">
-          (first seen {{ globalVars.abbreviateNumber(nextBlockStats.FailingTxnMinutesSinceAdded, 2) }} minutes ago)
+          ({{ "first-seen" | translate }}
+          {{ globalVars.abbreviateNumber(nextBlockStats.FailingTxnMinutesSinceAdded, 2) }}
+          {{ "minutes-ago" | translate }})
         </span>
       </div>
       <div class="mt-5px p-5px br-3px background-color-grey" style="overflow-wrap: anywhere">
         {{ nextBlockStats.FailingTxnHash }}
       </div>
 
-      <div class="pt-15px font-weight-bold border-bottom border-color-grey">Next failing txn error</div>
+      <div class="pt-15px font-weight-bold border-bottom border-color-grey">
+        {{ "Next-failing-txn-error" | translate }}
+      </div>
       <div class="mt-5px p-5px br-3px background-color-grey" style="overflow-wrap: anywhere">
         "{{ nextBlockStats.FailingTxnError }}"
       </div>
     </div>
-    <div *ngIf="!loadingNextBlockStats && !nextBlockStats">Next block stats not available. Try refreshing.</div>
-    <div *ngIf="loadingNextBlockStats">Loading...</div>
+    <div *ngIf="!loadingNextBlockStats && !nextBlockStats">
+      {{ "Next-block-stats-not-available-Try-refreshing" | translate }}
+    </div>
+    <div *ngIf="loadingNextBlockStats">{{ "Loading" | translate }}...</div>
   </div>
 
   <!-- Tutorial -->
-  <div
-    *ngIf="activeTab == 'Tutorial'"
-    class="w-100 d-flex flex-column disable-scrollbars"
-    style="overflow-y: scroll"
-  >
+  <div *ngIf="activeTab == 'Tutorial'" class="w-100 d-flex flex-column disable-scrollbars" style="overflow-y: scroll">
     <admin-tutorial></admin-tutorial>
   </div>
 
   <!-- NFTs -->
-  <div
-    *ngIf="activeTab == 'NFTs'"
-    class="w-100 d-flex flex-column disable-scrollbars"
-    style="overflow-y: scroll"
-  >
-      <nft-drop-mgr></nft-drop-mgr>
+  <div *ngIf="activeTab == 'NFTs'" class="w-100 d-flex flex-column disable-scrollbars" style="overflow-y: scroll">
+    <nft-drop-mgr></nft-drop-mgr>
   </div>
 
   <!-- Referral Program -->
@@ -571,7 +574,7 @@
     class="w-100 h-100 d-flex flex-column disable-scrollbars"
     style="overflow-y: scroll; min-height: 400px"
   >
-      <referral-program-mgr></referral-program-mgr>
+    <referral-program-mgr></referral-program-mgr>
   </div>
 
   <!-- Super Info -->
@@ -583,53 +586,55 @@
     <div
       class="w-100 d-flex justify-content-start py-10px pl-15px fs-15px fc-muted border-bottom border-color-grey light-grey-divider"
     >
-      Are you a super user? Welcome.
+      {{ "Are-you-a-super-user-Welcome" | translate }}
     </div>
 
     <!-- Swap Identities-->
     <div class="fs-15px font-weight-bold mt-15px mb-15px px-15px">
-      Swap Identity (BE CAREFUL):
+      {{ "Swap-Identity" | translate }} ({{ "BE-CAREFUL" | translate }}):
       <div class="d-flex mt-5px">
         <input
           [(ngModel)]="swapIdentityFromUsernameOrPublicKey"
           class="form-control w-100 fs-15px lh-15px"
-          placeholder="Enter a username or public key to transfer *FROM*"
+          placeholder="{{ 'Enter-a-username-or-public-key-to-transfer' | translate }} *{{ 'FROM' | translate }}*"
         />
       </div>
       <div class="d-flex mt-5px">
         <input
           [(ngModel)]="swapIdentityToUsernameOrPublicKey"
           class="form-control w-100 fs-15px lh-15px"
-          placeholder="Enter a username or public key to transfer *TO*"
+          placeholder="{{ 'Enter-a-username-or-public-key-to-transfer' | translate }} *{{ 'TO' | translate }}*"
         />
       </div>
       <div class="d-flex mt-5px">
         <button *ngIf="!submittingSwapIdentity" (click)="swapIdentity()" class="btn btn-outline-primary fs-15px">
-          Swap Identities
+          {{ "Swap-Identities" | translate }}
         </button>
-        <button *ngIf="submittingSwapIdentity" class="btn btn-primary fs-15px" disabled>Working...</button>
+        <button *ngIf="submittingSwapIdentity" class="btn btn-primary fs-15px" disabled>
+          {{ "Working" | translate }}...
+        </button>
       </div>
     </div>
     <!-- Change Username -->
     <div class="fs-15px font-weight-bold mt-15px mb-15px px-15px">
-      Change Username (BE CAREFUL):
+      {{ "Change-Username" | translate }} ({{ "BE-CAREFUL" | translate }}):
       <div class="d-flex mt-5px">
         <input
           [(ngModel)]="changeUsernamePublicKey"
           class="form-control w-100 fs-15px lh-15px"
-          placeholder="Enter a public key"
+          placeholder="{{ 'Enter a public key' | translate }}"
           (change)="searchedForPubKey = false; userMetadataToUpdate = null; userProfileEntryResponseToUpdate = null"
         />
         <button (click)="getUserMetadata()" class="btn btn-outline-primary fs-15px ml-5px">Get User</button>
       </div>
       <div class="d-flex mt-5px fs-12px fc-muted" *ngIf="userMetadataToUpdate">
-        <span>User Global Metadata</span>
+        <span>{{ "User-Global-Metadata" | translate }}</span>
         <ul>
           <li *ngFor="let item of userMetadataToUpdate | keyvalue">{{ item.key }}: {{ item.value }}</li>
         </ul>
       </div>
       <div class="d-flex mt-5px fs-12px fc-muted" *ngIf="userProfileEntryResponseToUpdate">
-        <span>User Profile Entry</span>
+        <span>{{ "User-Profile-Entry" | translate }}</span>
         <ul>
           <li *ngFor="let item of userProfileEntryResponseToUpdate | keyvalue">{{ item.key }}: {{ item.value }}</li>
         </ul>
@@ -638,73 +643,81 @@
         <input
           [(ngModel)]="usernameTarget"
           class="form-control w-100 fs-15px lh-15px"
-          placeholder="Enter the username to which you want to assign the username of this public key"
+          placeholder="{{
+            'Enter-the-username-to-which-you-want-to-assign-the-username-of-this-public-key' | translate
+          }}"
         />
       </div>
       <div class="d-flex mt-5px">
         <button *ngIf="!submittingUpdateUsername" (click)="updateUsername()" class="btn btn-outline-primary fs-15px">
-          Update Username
+          {{ "Update-Username" | translate }}
         </button>
-        <button *ngIf="submittingUpdateUsername" class="btn btn-primary fs-15px" disabled>Working...</button>
+        <button *ngIf="submittingUpdateUsername" class="btn btn-primary fs-15px" disabled>
+          {{ "Working" | translate }}...
+        </button>
       </div>
     </div>
     <!-- Reprocess Bitcoin Block -->
     <div class="fs-15px font-weight-bold mt-15px mb-15px px-15px">
-      Reprocess Bitcoin Block:
+      {{ "Reprocess-Bitcoin-Block" | translate }}:
       <div class="d-flex mt-5px">
         <input
           [(ngModel)]="bitcoinBlockHashOrHeight"
           (keydown.enter)="reprocessBitcoinBlock()"
           class="form-control w-100 fs-15px lh-15px"
-          placeholder="Enter a Bitcoin block hash or block height."
+          placeholder="{{ 'Enter-a-Bitcoin-block-hash-or-block-height' | translate }}."
         />
         <button
           *ngIf="!submittingReprocessRequest"
           (click)="reprocessBitcoinBlock()"
           class="btn btn-outline-primary fs-15px ml-5px"
         >
-          Reprocess Block
+          {{ "Reprocess-Block" | translate }}
         </button>
-        <button *ngIf="submittingReprocessRequest" class="btn btn-primary fs-15px ml-5px" disabled>Working...</button>
+        <button *ngIf="submittingReprocessRequest" class="btn btn-primary fs-15px ml-5px" disabled>
+          {{ "Working" | translate }}...
+        </button>
       </div>
     </div>
     <!-- Reprocess Bitcoin Block -->
     <div class="fs-15px font-weight-bold mt-15px mb-15px px-15px">
-      Evict unmined Bitcoin txns:
+      {{ "Evict-unmined-Bitcoin-txns" | translate }}:
       <div class="d-flex mt-5px">
         <input
           [(ngModel)]="evictBitcoinTxnHashes"
           class="form-control w-100 fs-15px lh-15px"
-          placeholder="Enter comma-separated Bitcoin txn hashes"
+          placeholder="{{ 'Enter-comma-separated-Bitcoin-txn-hashes' | translate }}"
         />
         <button
           *ngIf="!submittingEvictUnminedBitcoinTxns"
           (click)="evictBitcoinExchangeTxns(true)"
           class="btn btn-outline-primary fs-15px ml-5px"
         >
-          Test
+          {{ "Test" | translate }}
         </button>
         <button
           *ngIf="!submittingEvictUnminedBitcoinTxns"
           (click)="evictBitcoinExchangeTxns(false)"
           class="btn btn-outline-primary fs-15px ml-5px"
         >
-          Execute
+          {{ "Execute" | translate }}
         </button>
-        <button *ngIf="submittingReprocessRequest" class="btn btn-primary fs-15px ml-5px" disabled>Working...</button>
+        <button *ngIf="submittingReprocessRequest" class="btn btn-primary fs-15px ml-5px" disabled>
+          {{ "Working" | translate }}...
+        </button>
       </div>
     </div>
 
     <!-- Update Global Params -->
     <div class="fs-15px font-weight-bold mt-15px mb-5px px-15px">
-      Update Bitcoin to USD Price
+      {{ "Update-Bitcoin-to-USD-Price" | translate }}
       <div class="d-flex align-items-center justify-content-between font-weight-normal mt-5px">
         <input
           [(ngModel)]="updateGlobalParamsValues.USDPerBitcoin"
           type="number"
           min="0"
           class="form-control fs-15px lh-15px w-100"
-          placeholder="Enter current BTC price in USD."
+          placeholder="{{ 'Enter-current-BTC-price-in-USD' | translate }}."
         />
         <button
           *ngIf="!updatingUSDToBitcoin"
@@ -713,16 +726,16 @@
           style="width: fit-content"
           [ngStyle]="{ disabled: updatingGlobalParams }"
         >
-          Update
+          {{ "Update" | translate }}
         </button>
         <button *ngIf="updatingUSDToBitcoin" class="btn btn-dark fs-15px ml-5px" style="width: fit-content" disabled>
-          Updating...
+          {{ "Updating" | translate }}...
         </button>
       </div>
     </div>
 
     <div class="fs-15px font-weight-bold mt-15px mb-5px px-15px">
-      Create Profile Fee In DeSo
+      {{ "Create-Profile-Fee-In-DeSo" | translate }}
       <div class="d-flex align-items-center justify-content-between font-weight-normal mt-5px">
         <input
           [(ngModel)]="updateGlobalParamsValues.CreateProfileFeeNanos"
@@ -730,7 +743,7 @@
           class="form-control fs-15px lh-15px w-100"
           style="width: 250px"
           min="0"
-          placeholder="Set fee to create a profile"
+          placeholder="{{ 'Set-fee-to-create-a-profile' | translate }}"
         />
         <button
           *ngIf="!updatingCreateProfileFee"
@@ -739,7 +752,7 @@
           style="width: fit-content"
           [ngStyle]="{ disabled: updatingGlobalParams }"
         >
-          Update
+          {{ "Update" | translate }}
         </button>
         <button
           *ngIf="updatingCreateProfileFee"
@@ -747,13 +760,13 @@
           style="width: fit-content"
           disabled
         >
-          Updating...
+          {{ "Updating" | translate }}...
         </button>
       </div>
     </div>
 
     <div class="fs-15px font-weight-bold mt-15px mb-5px px-15px">
-      Min. Network Fee Rate (nanos / kb)
+      {{ "Min-Network-Fee-Rate" | translate }}
       <div class="d-flex align-items-center justify-content-between font-weight-normal mt-5px">
         <input
           [(ngModel)]="updateGlobalParamsValues.MinimumNetworkFeeNanosPerKB"
@@ -761,7 +774,7 @@
           min="0"
           class="form-control fs-15px lh-15px w-100"
           style="width: 250px"
-          placeholder="Set minimum network fee per kb"
+          placeholder="{{ 'Set-minimum-network-fee-per-kb' | translate }}"
         />
         <button
           *ngIf="!updatingMinimumNetworkFee"
@@ -770,7 +783,7 @@
           style="width: fit-content"
           [ngStyle]="{ disabled: updatingGlobalParams }"
         >
-          Update
+          {{ "Update" | translate }}
         </button>
         <button
           *ngIf="updatingMinimumNetworkFee"
@@ -778,13 +791,13 @@
           style="width: fit-content"
           disabled
         >
-          Updating...
+          {{ "Updating" | translate }}...
         </button>
       </div>
     </div>
 
     <div class="fs-15px font-weight-bold mt-15px mb-5px px-15px">
-      Max Copies per NFT
+      {{ "Max-Copies-per-NFT" | translate }}
       <div class="d-flex align-items-center justify-content-between font-weight-normal mt-5px">
         <input
           [(ngModel)]="updateGlobalParamsValues.MaxCopiesPerNFT"
@@ -792,7 +805,7 @@
           min="0"
           class="form-control fs-15px lh-15px w-100"
           style="width: 250px"
-          placeholder="Set max copies per NFT"
+          placeholder="{{ 'Set-max-copies-per-NFT' | translate }}"
         />
         <button
           *ngIf="!updatingMaxCopiesPerNFT"
@@ -801,21 +814,16 @@
           style="width: fit-content"
           [ngStyle]="{ disabled: updatingGlobalParams }"
         >
-          Update
+          {{ "Update" | translate }}
         </button>
-        <button
-          *ngIf="updatingMaxCopiesPerNFT"
-          class="btn btn-dark fs-15px ml-5px"
-          style="width: fit-content"
-          disabled
-        >
-          Updating...
+        <button *ngIf="updatingMaxCopiesPerNFT" class="btn btn-dark fs-15px ml-5px" style="width: fit-content" disabled>
+          {{ "Updating" | translate }}...
         </button>
       </div>
     </div>
 
     <div class="fs-15px font-weight-bold mt-15px mb-5px px-15px">
-      Create NFT Fee in DeSo
+      {{ "Create-NFT-Fee-in-DeSo" | translate }}
       <div class="d-flex align-items-center justify-content-between font-weight-normal mt-5px">
         <input
           [(ngModel)]="updateGlobalParamsValues.CreateNFTFeeNanos"
@@ -823,7 +831,7 @@
           min="0"
           class="form-control fs-15px lh-15px w-100"
           style="width: 250px"
-          placeholder="Set fee per copy of an NFT"
+          placeholder="{{ 'Set-fee-per-copy-of-an-NFT' | translate }}"
         />
         <button
           *ngIf="!updatingCreateNFTFeeNanos"
@@ -832,7 +840,7 @@
           style="width: fit-content"
           [ngStyle]="{ disabled: updatingGlobalParams }"
         >
-          Update
+          {{ "Update" | translate }}
         </button>
         <button
           *ngIf="updatingCreateNFTFeeNanos"
@@ -840,98 +848,106 @@
           style="width: fit-content"
           disabled
         >
-          Updating...
+          {{ "Updating" | translate }}...
         </button>
       </div>
     </div>
 
     <!-- Verify User -->
     <div class="fs-15px font-weight-bold mt-15px mb-15px px-15px">
-      Grant Verification Badge:
+      {{ "Grant-Verification-Badge" | translate }}:
       <div class="d-flex mt-5px">
         <input
           [(ngModel)]="usernameToVerify"
           (keydown.enter)="grantVerificationBadge()"
           class="form-control w-100 fs-15px lh-15px"
-          placeholder="Enter a username to verify."
+          placeholder="{{ 'Enter-a-username-to-verify' | translate }}."
         />
         <button
           *ngIf="!submittingVerifyRequest"
           (click)="grantVerificationBadge()"
           class="btn btn-outline-primary fs-15px ml-5px"
         >
-          Verify
+          {{ "Verify" | translate }}
         </button>
-        <button *ngIf="submittingVerifyRequest" class="btn btn-primary fs-15px ml-5px" disabled>Working...</button>
+        <button *ngIf="submittingVerifyRequest" class="btn btn-primary fs-15px ml-5px" disabled>
+          {{ "Working" | translate }}...
+        </button>
       </div>
     </div>
 
     <!-- Remove Verification Badge -->
     <div class="fs-15px font-weight-bold mt-15px mb-15px px-15px">
-      Remove Verification Badge:
+      {{ "Remove-Verification-Badge" | translate }}:
       <div class="d-flex mt-5px">
         <input
           [(ngModel)]="usernameForWhomToRemoveVerification"
           (keydown.enter)="RemoveVerification()"
           class="form-control w-100 fs-15px lh-15px"
-          placeholder="Enter a username from whom to remove verification."
+          placeholder="{{ 'Enter-a-username-from-whom-to-remove-verification' | translate }}."
         />
         <button
           *ngIf="!submittingRemovalRequest"
           (click)="RemoveVerification()"
           class="btn btn-outline-primary fs-15px ml-5px"
         >
-          Remove
+          {{ "Remove" | translate }}
         </button>
-        <button *ngIf="submittingRemovalRequest" class="btn btn-primary fs-15px ml-5px" disabled>Working...</button>
+        <button *ngIf="submittingRemovalRequest" class="btn btn-primary fs-15px ml-5px" disabled>
+          {{ "Working" | translate }}...
+        </button>
       </div>
     </div>
 
     <div class="fs-15px mt-15px mb-15px px-15px">
       <button *ngIf="!loadingVerifiedUsers" (click)="_loadVerifiedUsers()" class="btn btn-outline-dark fs-15px">
-        (Load Verified Users)
+        ({{ "Load-Verified-Users" | translate }})
       </button>
-      <button *ngIf="loadingVerifiedUsers" class="btn btn-dark fs-15px" disabled>Loading...</button>
+      <button *ngIf="loadingVerifiedUsers" class="btn btn-dark fs-15px" disabled>{{ "Loading" | translate }}...</button>
     </div>
     <div class="fs-15px mb-15px px-15px" style="overflow-wrap: break-word">{{ verifiedUsers }}</div>
     <!-- Username Verification Audit Logs -->
     <div class="fs-15px font-weight-bold mt-15px mb-15px px-15px">
-      Get Username Verification Logs:
+      {{ "Get-Username-Verification-Logs" | translate }}:
       <div class="d-flex mt-5px">
         <input
           [(ngModel)]="usernameToFetchVerificationAuditLogs"
           (keydown.enter)="_loadVerifiedUsersAuditLog()"
           class="form-control w-100 fs-15px lh-15px"
-          placeholder="Enter a username."
+          placeholder="{{ 'Enter-a-username' | translate }}."
         />
         <button
           *ngIf="!loadingVerifiedUsersAuditLog"
           (click)="_loadVerifiedUsersAuditLog()"
           class="btn btn-outline-primary fs-15px ml-5px"
         >
-          Fetch
+          {{ "Fetch" | translate }}
         </button>
-        <button *ngIf="loadingVerifiedUsersAuditLog" class="btn btn-primary fs-15px ml-5px" disabled>Working...</button>
+        <button *ngIf="loadingVerifiedUsersAuditLog" class="btn btn-primary fs-15px ml-5px" disabled>
+          {{ "Working" | translate }}...
+        </button>
       </div>
     </div>
     <ul *ngFor="let auditLog of usernameVerificationAuditLogs">
-      <li class="fs-12px">Time: {{ globalVars.convertTstampToDateOrTime(auditLog.TimestampNanos) }}</li>
+      <li class="fs-12px">
+        {{ "Time" | translate }}: {{ globalVars.convertTstampToDateOrTime(auditLog.TimestampNanos) }}
+      </li>
       <ul>
-        <li class="fs-12px">VerifierPubKey: {{ auditLog.VerifierPublicKeyBase58Check }}</li>
-        <li class="fs-12px">VerifierUsername: {{ auditLog.VerifierUsername }}</li>
-        <li class="fs-12px">VerificationRemoved: {{ auditLog.IsRemoval }}</li>
+        <li class="fs-12px">{{ "VerifierPubKey" | translate }}: {{ auditLog.VerifierPublicKeyBase58Check }}</li>
+        <li class="fs-12px">{{ "VerifierUsername" | translate }}: {{ auditLog.VerifierUsername }}</li>
+        <li class="fs-12px">{{ "VerificationRemoved" | translate }}: {{ auditLog.IsRemoval }}</li>
       </ul>
     </ul>
 
     <!-- USD Cents Per DeSo Reserve Price  -->
     <div class="fs-15px font-weight-bold mt-15px mb-15px px-15px">
-      Update USD to DeSo Reserve Price ($)
+      {{ "Update-USD-to-DeSo-Reserve-Price" | translate }} ($)
       <div class="d-flex mt-5px">
         <input
           [(ngModel)]="usdToDeSoReserveExchangeRate"
           (keydown.enter)="updateUSDToDeSoReserveExchangeRate()"
           class="form-control w-100 fs-15px lh-15px"
-          placeholder="Enter the new USD to DeSo Reserve Exchange Rate"
+          placeholder="{{ 'Enter-the-new-USD-to-DeSo-Reserve-Exchange-Rate' | translate }}"
           type="number"
         />
         <button
@@ -939,21 +955,23 @@
           (click)="updateUSDToDeSoReserveExchangeRate()"
           class="btn btn-outline-primary fs-15px ml-5px"
         >
-         Update
+          {{ "Update" | translate }}
         </button>
-        <button *ngIf="submittingUSDToDeSoReserveExchangeRateUpdate" class="btn btn-primary fs-15px ml-5px" disabled>Working...</button>
+        <button *ngIf="submittingUSDToDeSoReserveExchangeRateUpdate" class="btn btn-primary fs-15px ml-5px" disabled>
+          {{ "Working" | translate }}...
+        </button>
       </div>
     </div>
 
     <!-- Buy DeSo Fee Rate-->
     <div class="fs-15px font-weight-bold mt-15px mb-15px px-15px">
-      Update Buy DeSo Fee Rate (%)
+      {{ "Update-Buy-DeSo-Fee-Rate" | translate }} (%)
       <div class="d-flex mt-5px">
         <input
           [(ngModel)]="buyDeSoFeeRate"
           (keydown.enter)="updateBuyDeSoFeeRate()"
           class="form-control w-100 fs-15px lh-15px"
-          placeholder="Enter Buy DeSo Fee Rate"
+          placeholder="{{ 'Enter-Buy-DeSo-Fee-Rate' | translate }}"
           type="number"
         />
         <button
@@ -961,19 +979,23 @@
           (click)="updateBuyDeSoFeeRate()"
           class="btn btn-outline-primary fs-15px ml-5px"
         >
-          Update
+          {{ "Update" | translate }}
         </button>
-        <button *ngIf="submittingBuyDeSoFeeRate" class="btn btn-primary fs-15px ml-5px" disabled>Working...</button>
+        <button *ngIf="submittingBuyDeSoFeeRate" class="btn btn-primary fs-15px ml-5px" disabled>
+          {{ "Working" | translate }}...
+        </button>
       </div>
     </div>
 
     <div class="fs-15px font-weight-bold mt-15px mb-15px px-15px">
-      Remove nil posts from global feed:
+      {{ "Remove-nil-posts-from-global-feed" | translate }}:
       <div class="d-flex mt-5px">
         <button *ngIf="!removingNilPosts" (click)="_removeNilPosts()" class="btn btn-outline-primary fs-15px ml-5px">
-          Clean up!
+          {{ "Clean-up" | translate }}!
         </button>
-        <button *ngIf="removingNilPosts" class="btn btn-primary fs-15px ml-5px" disabled>Working...</button>
+        <button *ngIf="removingNilPosts" class="btn btn-primary fs-15px ml-5px" disabled>
+          {{ "Working" | translate }}...
+        </button>
       </div>
     </div>
   </div>
@@ -999,7 +1021,7 @@
   class="d-flex flex-column align-items-center justify-content-center p-15px font-italic"
   style="height: 600px"
 >
-  Access denied.
+  {{ "Access-denied" | translate }}.
 </div>
 <div class="global__bottom-bar-mobile-height"></div>
 <div class="global__bottom-bar-mobile-height"></div>

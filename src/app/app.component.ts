@@ -8,6 +8,7 @@ import { environment } from "../environments/environment";
 import { ThemeService } from "./theme/theme.service";
 import { of, Subscription, zip } from "rxjs";
 import { catchError } from "rxjs/operators";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: "app-root",
@@ -22,8 +23,11 @@ export class AppComponent implements OnInit {
     public globalVars: GlobalVarsService,
     private route: ActivatedRoute,
     public identityService: IdentityService,
-    private router: Router
+    private router: Router,
+    private translate: TranslateService
   ) {
+    this.initializeApp();
+
     this.globalVars.Init(
       null, // loggedInUser
       [], // userList
@@ -84,6 +88,17 @@ export class AppComponent implements OnInit {
         }
       }
     }
+  }
+
+  initializeApp() {
+    this.translate.addLangs(["en", "es"]);
+    this.translate.setDefaultLang("es");
+    this.translateLang("es");
+  }
+
+  translateLang(lang) {
+    this.translate.setDefaultLang(lang);
+    console.log(this.translate.defaultLang);
   }
 
   // This stringifies the user object after first zeroing out fields that make

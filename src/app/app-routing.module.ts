@@ -38,6 +38,7 @@ import { DiamondTutorialPageComponent } from "./tutorial/diamond-tutorial-page/d
 import { CreatePostTutorialPageComponent } from "./tutorial/create-post-tutorial-page/create-post-tutorial-page.component";
 import { SupplyMonitoringStatsPageComponent } from "./supply-monitoring-stats-page/supply-monitoring-stats-page.component";
 import { DaoCoinsPageComponent } from "./dao-coins/dao-coins-page/dao-coins-page.component";
+import { TranslateModule } from "@ngx-translate/core";
 
 class RouteNames {
   // Not sure if we should have a smarter schema for this, e.g. what happens if we have
@@ -177,7 +178,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes), TranslateModule.forChild()],
   exports: [RouterModule],
 })
 class AppRoutingModule {

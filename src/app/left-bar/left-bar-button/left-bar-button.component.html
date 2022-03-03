@@ -26,7 +26,7 @@
       [routerLinkActive]="['font-weight-bold', 'fc-default']"
       queryParamsHandling="merge"
     >
-      {{ buttonLabel }}
+      {{ buttonLabel | translate }}
     </a>
     <div
       *ngIf="hasNotifications && globalVars.messageResponse && globalVars.messageResponse.NumberOfUnreadThreads != 0"

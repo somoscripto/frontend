@@ -1,7 +1,14 @@
 <div class="d-flex" dropdown (click)="$event.stopPropagation()" container="body" style="align-items: center">
-  <div class="d-flex d-lg-none fs-12px fc-muted" style="padding-right: 6px;">
-    <span class="d-inline-block ml-1 cursor-pointer lh-12px fc-muted align-middle" matTooltipClass="global__mat-tooltip global__mat-tooltip-font-size" mat-raised-button #tooltip="matTooltip" [matTooltip]="globalVars.convertTstampToDateTime(postContent.TimestampNanos)">{{
-      globalVars.convertTstampToDaysOrHours(postContent.TimestampNanos) }}</span>
+  <div class="d-flex d-lg-none fs-12px fc-muted" style="padding-right: 6px">
+    <span
+      class="d-inline-block ml-1 cursor-pointer lh-12px fc-muted align-middle"
+      matTooltipClass="global__mat-tooltip global__mat-tooltip-font-size"
+      mat-raised-button
+      #tooltip="matTooltip"
+      [matTooltip]="globalVars.convertTstampToDateTime(postContent.TimestampNanos)"
+    >
+      {{ globalVars.convertTstampToDaysOrHours(postContent.TimestampNanos) }}
+    </span>
   </div>
   <a class="js-feed-post__dropdown-toggle link--unstyled text-grey9" role="button" dropdownToggle>
     <i class="fas fa-ellipsis-h"></i>
@@ -12,23 +19,27 @@
       (click)="copyPostLinkToClipboard($event)"
     >
       <i class="icon-link"></i>
-      Link to {{ post.IsNFT ? "NFT" : "Post" }}
+      {{ "Link-to" | translate }} {{ post.IsNFT ? "NFT" : "Post" }}
     </a>
     <a
       *ngIf="showSharePost"
       class="dropdown-menu-item fs-12px d-block link--unstyled p-10px feed-post__dropdown-menu-item"
       (click)="sharePostUrl($event)"
-      >
+    >
       <i class="fas fa-share-square"></i>
-      Share {{ post.IsNFT ? "NFT" : "Post" }}
+      {{ "Share" | translate }} {{ post.IsNFT ? "NFT" : "Post" }}
     </a>
     <a
-      *ngIf="globalVars.loggedInUser.PublicKeyBase58Check === post.PosterPublicKeyBase58Check && !post.IsNFT && !post.ParentStakeID"
+      *ngIf="
+        globalVars.loggedInUser.PublicKeyBase58Check === post.PosterPublicKeyBase58Check &&
+        !post.IsNFT &&
+        !post.ParentStakeID
+      "
       class="dropdown-menu-item fs-12px d-block link--unstyled p-10px feed-post__dropdown-menu-item text-success"
       (click)="openMintNftModal($event)"
     >
       <i class="fas fa-stamp"></i>
-      Mint NFT
+      {{ "Mint-NFT" | translate }}
     </a>
     <a
       *ngIf="showCreateNFTAuction()"
@@ -36,7 +47,7 @@
       (click)="openCreateNFTAuctionModal($event)"
     >
       <i class="fas fa-dollar-sign"></i>
-      Put On Sale
+      {{ "Put-On-Sale" | translate }}
     </a>
     <a
       *ngIf="showTransferNFT()"
@@ -44,7 +55,7 @@
       (click)="openTransferNFTModal($event)"
     >
       <i class="fas fa-paper-plane"></i>
-      Transfer NFT
+      {{ "Transfer-NFT" | translate }}
     </a>
     <a
       *ngIf="showBurnNFT()"
@@ -52,7 +63,7 @@
       (click)="openBurnNFTModal($event)"
     >
       <i class="fa fa-fire"></i>
-      Burn NFT
+      {{ "Burn-NFT" | translate }}
     </a>
     <a
       *ngIf="post.IsNFT && globalVars.showAdminTools()"
@@ -60,7 +71,7 @@
       (click)="dropNFT()"
     >
       <i class="fas fa-tint"></i>
-      Add NFT to drop
+      {{ "Add-NFT-to-drop" | translate }}
     </a>
     <a
       *ngIf="post.InMempool"
@@ -68,14 +79,14 @@
       style="cursor: default"
     >
       <i class="fas fa-spinner"></i>
-      Status: Mining...
+      {{ "Status" | translate }}: {{ "Mining" | translate }}...
     </a>
     <a
       class="dropdown-menu-item fs-12px d-block link--unstyled p-10px feed-post__dropdown-menu-item text-danger"
       (click)="reportPost()"
     >
       <i class="fas fa-flag"></i>
-      Report Content
+      {{ "Report-Content" | translate }}
     </a>
     <a
       *ngIf="showHidePostDropdownItem()"
@@ -83,7 +94,7 @@
       (click)="hidePost()"
     >
       <i class="fas fa-trash"></i>
-      Hide
+      {{ "Hide" | translate }}
     </a>
     <a
       *ngIf="showBlockUserDropdownItem()"
@@ -91,7 +102,7 @@
       (click)="blockUser()"
     >
       <i class="fas fa-ban"></i>
-      Block User
+      {{ "Block-User" | translate }}
     </a>
     <a
       *ngIf="showAddToGlobalFeedDropdownItem()"
@@ -99,7 +110,7 @@
       (click)="_addPostToGlobalFeed($event)"
     >
       <i class="fas fa-folder-plus"></i>
-      Add To Feed
+      {{ "Add-To-Feed" | translate }}
     </a>
     <a
       *ngIf="showRemoveFromGlobalFeedDropdownItem()"
@@ -107,7 +118,7 @@
       (click)="_addPostToGlobalFeed($event)"
     >
       <i class="fas fa-folder-minus"></i>
-      Remove From Feed
+      {{ "Remove-From-Feed" | translate }}
     </a>
     <a
       *ngIf="showPinPostToGlobalFeedDropdownItem()"
@@ -115,7 +126,7 @@
       (click)="_pinPostToGlobalFeed($event)"
     >
       <i class="fas fa-thumbtack"></i>
-      Pin To Feed
+      {{ "Pin-To-Feed" | translate }}
     </a>
     <a
       *ngIf="showUnpinPostFromGlobalFeedDropdownItem()"
@@ -123,7 +134,7 @@
       (click)="_pinPostToGlobalFeed($event)"
     >
       <i class="fas fa-undo"></i>
-      Unpin From Feed
+      {{ "Unpin-From-Feed" | translate }}
     </a>
   </div>
 </div>

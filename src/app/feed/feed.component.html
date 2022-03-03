@@ -6,7 +6,7 @@
   >
     <div class="d-flex align-items-center">
       <top-bar-mobile-navigation-control class="mr-15px d-lg-none d-inline-block"></top-bar-mobile-navigation-control>
-      Home
+      {{ "Home" | translate }}
     </div>
   </div>
 
@@ -25,11 +25,14 @@
   </div>
 
   <!-- Mobile DeSo Price -->
-  <div *ngIf="isMobile" class="d-flex border-bottom border-color-grey background-color-light-grey py-5px px-15px fs-12px">
-    <div>$DESO Price&nbsp;&nbsp;&nbsp;</div>
+  <div
+    *ngIf="isMobile"
+    class="d-flex border-bottom border-color-grey background-color-light-grey py-5px px-15px fs-12px"
+  >
+    <div>{{ "$DESO" | translate }} {{ "Price" | translate }}&nbsp;&nbsp;&nbsp;</div>
     <div>
       <span>~{{ globalVars.desoToUSDExchangeRateToDisplay }}</span>
-      <span class="text-muted">&nbsp;USD per coin</span>
+      <span class="text-muted">&nbsp;{{ "USD-per-coin" | translate }}</span>
     </div>
   </div>
 
@@ -38,13 +41,21 @@
     *ngIf="isMobile && globalVars.loggedInUser && !globalVars.loggedInUser.EmailVerified"
     class="d-flex border-bottom border-color-grey background-color-light-grey py-5px px-15px fs-12px"
   >
-    <div>Your email is not verified.&nbsp;&nbsp;&nbsp;</div>
+    <div>{{ "Your-email-is-not-verified" | translate }}.&nbsp;&nbsp;&nbsp;</div>
     <div>
       <div *ngIf="globalVars.loggedInUser.HasEmail">
-        <a class="font-weight-bold" (click)="globalVars.resendVerifyEmail()" *ngIf="!globalVars.resentVerifyEmail">Resend Verification Email</a>
-        <span *ngIf="globalVars.resentVerifyEmail">Sent!</span>
+        <a class="font-weight-bold" (click)="globalVars.resendVerifyEmail()" *ngIf="!globalVars.resentVerifyEmail">
+          {{ "Resend-Verification-Email" | translate }}
+        </a>
+        <span *ngIf="globalVars.resentVerifyEmail">{{ "Sent" | translate }}!</span>
       </div>
-      <a *ngIf="!globalVars.loggedInUser.HasEmail" [routerLink]="'/' + globalVars.RouteNames.SETTINGS" class="font-weight-bold">Update your email</a>
+      <a
+        *ngIf="!globalVars.loggedInUser.HasEmail"
+        [routerLink]="'/' + globalVars.RouteNames.SETTINGS"
+        class="font-weight-bold"
+      >
+        {{ "Update-your-email" | translate }}
+      </a>
     </div>
   </div>
 
@@ -53,14 +64,27 @@
     *ngIf="globalVars.loggedInUser?.ReferralInfoResponses?.length > 0"
     class="d-flex border-bottom justify-content-center border-color-grey background-color-lemon-chiffon py-5px px-15px fs-12px"
   >
-    <div style="color: #333333; text-align: center">You have a
-      <b>{{globalVars.formatUSD(globalVars.loggedInUser.ReferralInfoResponses[0].Info.ReferrerAmountUSDCents / 100, 0)}}</b> referral link on Diamond...<br><a href="https://diamondapp.com" class="font-weight-bold">Check it out!</a></div>
+    <div style="color: #333333; text-align: center">
+      {{ "You-have-a" | translate }}
+      <b>
+        {{
+          globalVars.formatUSD(globalVars.loggedInUser.ReferralInfoResponses[0].Info.ReferrerAmountUSDCents / 100, 0)
+        }}
+      </b>
+      {{ "referral-link-on-Diamond" | translate }}...
+      <br />
+      <a href="https://diamondapp.com" class="font-weight-bold">{{ "Check-it-out" | translate }}!</a>
+    </div>
   </div>
   <div
     *ngIf="!globalVars.loggedInUser?.ReferralInfoResponses?.length"
     class="d-flex border-bottom justify-content-center border-color-grey background-color-lemon-chiffon py-5px px-15px fs-12px"
   >
-    <div style="color: #333333; text-align: center">Diamond is a cool new DeSo app...<br><a href="https://diamondapp.com" class="font-weight-bold">Check it out!</a></div>
+    <div style="color: #333333; text-align: center">
+      {{ "Diamond-is-a-cool-new-DeSo-app" | translate }}...
+      <br />
+      <a href="https://diamondapp.com" class="font-weight-bold">{{ "Check-it-out" | translate }}!</a>
+    </div>
   </div>
 
   <div
@@ -73,10 +97,12 @@
   <!-- Tab Selector -->
   <tab-selector [tabs]="feedTabs" [activeTab]="activeTab" (tabClick)="_handleTabClick($event)"></tab-selector>
 
-  <countdown-timer *ngIf="nextNFTShowcaseTime"
+  <countdown-timer
+    *ngIf="nextNFTShowcaseTime"
     [timerText]="'The next NFT showcase drops in...'"
     [fontWeight]="500"
-    [timerEnd]="nextNFTShowcaseTime"></countdown-timer>
+    [timerEnd]="nextNFTShowcaseTime"
+  ></countdown-timer>
 
   <div [id]="getPullToRefreshMarkerId()"></div>
 
@@ -113,8 +139,8 @@
       class="w-100 py-15px d-flex align-items-center justify-content-center cursor-pointer creator-leaderboard__load-more"
       (click)="loadMorePosts()"
     >
-      <div *ngIf="!activeTabReadyForDisplay()" class="fs-15px">Load More</div>
-      <div *ngIf="activeTabReadyForDisplay()" class="fs-15px">Loading...</div>
+      <div *ngIf="!activeTabReadyForDisplay()" class="fs-15px">{{ "Load-More" | translate }}</div>
+      <div *ngIf="activeTabReadyForDisplay()" class="fs-15px">{{ "Loading" | translate }}...</div>
     </div>
   </div>
 
@@ -127,7 +153,7 @@
     class="d-flex flex-column align-items-center justify-content-center fc-muted fs-15px p-15px text-center"
     style="height: 400px"
   >
-    <div>No posts yet</div>
+    <div>{{ "No-posts-yet" | translate }}</div>
 
     <div class="mt-10px">
       <a
@@ -136,9 +162,9 @@
         [queryParams]="{ feedTab: FeedComponent.GLOBAL_TAB }"
         queryParamsHandling="merge"
       >
-        View the global feed
+        {{ "View-the-global-feed" | translate }}
       </a>
-      to find more people to follow
+      {{ "to-find-more-people-to-follow" | translate }}
     </div>
   </div>
   <simple-center-loader *ngIf="showLoadingSpinner()"></simple-center-loader>

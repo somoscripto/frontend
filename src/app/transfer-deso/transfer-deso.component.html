@@ -4,18 +4,18 @@
 >
   <top-bar-mobile-navigation-control class="mr-15px d-lg-none d-inline-block"></top-bar-mobile-navigation-control>
 
-  Send $DESO
+  {{ "Send" | translate }} {{ "$DESO" | translate }}
 </div>
 
 <!-- Explainer -->
 <div
   class="d-flex align-items-center fs-15px fc-muted p-15px border-bottom border-color-grey background-color-light-grey"
 >
-  Sending $DESO is easy. Just enter a public key below and the protocol will handle the rest.
+  {{ "Sending-DESO-is-easy-Just-enter-a-public-key-below-and-the-protocol-will-handle-the-rest" | translate }}.
 </div>
 
 <div class="fs-15px font-weight-bold mt-15px px-15px">
-  Public key or username to pay:
+  {{ "Public-key-or-username-to-pay" | translate }}:
   <!-- Search Bar -->
   <search-bar
     [showCloutavista]="false"
@@ -34,7 +34,7 @@
   ></simple-profile-card>
 </div>
 
-<div class="fs-15px font-weight-bold mt-15px px-15px">Amount of $DESO to send:</div>
+<div class="fs-15px font-weight-bold mt-15px px-15px">{{ "Amount-of-$DESO-to-send" | translate }}:</div>
 <div class="d-flex align-items-center px-15px mt-5px">
   <input type="number" class="form-control w-100 fs-15px lh-15px" placeholder="0" [(ngModel)]="transferAmount" />
   <button
@@ -43,7 +43,7 @@
     style="line-height: 15px; border-radius: 3px"
     (click)="_clickMaxDeSo()"
   >
-    Max
+    {{ "Max" | translate }}
   </button>
   <button
     *ngIf="loadingMax"
@@ -51,26 +51,26 @@
     style="line-height: 15px; border-radius: 3px"
     disabled
   >
-    Loading...
+    {{ "Loading" | translate }}...
   </button>
 </div>
 
-<div class="fs-15px font-weight-bold mt-15px px-15px">Network Fee:</div>
+<div class="fs-15px font-weight-bold mt-15px px-15px">{{ "Network-Fee" | translate }}:</div>
 <div
   class="d-flex align-items-center fs-15px lh-15px pl-15px mt-5px ml-15px mr-15px border border-color-grey background-color-light-grey"
   style="height: 40px; border-radius: 3px"
 >
   {{ globalVars.nanosToDeSo(networkFee * 1e9) }}
-  (≈ {{ globalVars.nanosToUSD(networkFee * 1e9) }} USD)
+  (≈ {{ globalVars.nanosToUSD(networkFee * 1e9) }} {{ "USD" | translate }})
 </div>
 
-<div class="fs-15px font-weight-bold mt-15px px-15px">Total:</div>
+<div class="fs-15px font-weight-bold mt-15px px-15px">{{ "Total" | translate }}:</div>
 <div
   class="d-flex align-items-center fs-15px lh-15px pl-15px mt-5px ml-15px mr-15px mb-15px border border-color-grey background-color-light-grey"
   style="height: 40px; border-radius: 3px"
 >
   {{ globalVars.nanosToDeSo((transferAmount + networkFee) * 1e9) }}
-  (≈ {{ globalVars.nanosToUSD((transferAmount + networkFee) * 1e9) }} USD)
+  (≈ {{ globalVars.nanosToUSD((transferAmount + networkFee) * 1e9) }} {{ "USD" | translate }})
 </div>
 
 <div *ngIf="transferDeSoError != ''" class="fs-15px fc-red ml-15px pb-15px">
@@ -83,7 +83,7 @@
   style="line-height: 15px; border-radius: 3px"
   (click)="_clickSendDeSo()"
 >
-  Send DeSo
+  {{ "Send" | translate }} {{ "DeSo" | translate }}
 </button>
 
 <button
@@ -92,12 +92,15 @@
   style="line-height: 15px; border-radius: 3px"
   disabled
 >
-  Working...
+  {{ "Working" | translate }}...
 </button>
 
 <div class="p-15px d-flex flex-column align-items-center">
-  <p>Scan QR code to send {{ globalVars.loggedInUser.ProfileEntryResponse?.Username }} $DESO</p>
-  <img [src]="sendDeSoQRCode | sanitizeQRCode"/>
+  <p>
+    {{ "Scan-QR-code-to-send" | translate }} {{ globalVars.loggedInUser.ProfileEntryResponse?.Username }}
+    {{ "$DESO" | translate }}
+  </p>
+  <img [src]="sendDeSoQRCode | sanitizeQRCode" />
 </div>
 
 <!-- SPACER FOR BOTTOM BAR ON MOBILE -->

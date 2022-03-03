@@ -5,7 +5,7 @@
     style="z-index: 1"
   >
     <top-bar-mobile-navigation-control class="mr-15px d-lg-none d-inline-block"></top-bar-mobile-navigation-control>
-    Buy $DESO
+    {{ "Buy-DESO" | translate }}
   </div>
 
   <div class="global__top-bar__height"></div>
@@ -22,11 +22,8 @@
         <div *ngIf="activeTab === BuyDeSoComponent.BUY_WITH_BTC">
           <!-- Step One Box -->
           <div class="w-100 border-top border-color-grey mt-20px">
-            <div
-              class="fs-15px buy-deso__box-label-adjustment pl-5px pr-5px ml-10px"
-              style="background-color: white"
-            >
-              Step One
+            <div class="fs-15px buy-deso__box-label-adjustment pl-5px pr-5px ml-10px" style="background-color: white">
+              {{ "Step-One" | translate }}
 
               <i
                 (click)="tooltip1.toggle()"
@@ -39,10 +36,10 @@
 
             <div class="px-15px pt-5px">
               <div class="fs-18px font-weight-bold">
-                Send Bitcoin to this
+                {{ "Send-Bitcoin-to-this" | translate }}
 
                 <span>
-                  address
+                  {{ "address" | translate }}
                   <i
                     (click)="tooltip2.toggle()"
                     class="fas fa-info-circle text-greyC fs-15px global__tooltip-icon"
@@ -55,9 +52,10 @@
 
               <div class="fs-18px mt-1 mb-1">
                 <span>
-                  Minimum deposit is currently
+                  {{ "Minimum-deposit-is-currently" | translate }}
                   <b>
-                    {{ ((buyDeSoFields.bitcoinTransactionFeeRateSatoshisPerKB * 0.3) / 1e8).toFixed(4) }} Bitcoin
+                    {{ ((buyDeSoFields.bitcoinTransactionFeeRateSatoshisPerKB * 0.3) / 1e8).toFixed(4) }}
+                    {{ "Bitcoin" | translate }}
                   </b>
                   <i
                     (click)="tooltip3.toggle()"
@@ -83,14 +81,14 @@
                     class="btn btn-outline-primary w-100"
                     style="border-radius: 3px"
                   >
-                    Copy
+                    {{ "Copy" | translate }}
                   </div>
                 </div>
               </div>
 
               <div class="row pl-15px pt-15px">
                 <div class="col-12 fs-15px pl-0px mb-0" style="border-radius: 3px">
-                  <span class="font-weight-bold">Amount deposited</span>
+                  <span class="font-weight-bold">{{ "Amount-deposited" | translate }}</span>
                   <span
                     (click)="tooltip.toggle()"
                     class="text-grey8A fs-15px global__tooltip-icon"
@@ -98,7 +96,7 @@
                     [matTooltip]="withdrawBitcoinTooltip()"
                     #tooltip="matTooltip"
                   >
-                    &middot; Withdraw
+                    &middot; {{ "Withdraw" | translate }}
                   </span>
                 </div>
               </div>
@@ -110,7 +108,7 @@
                 >
                   <div class="pl-10px">
                     <div *ngIf="appData.latestBitcoinAPIResponse">
-                      {{ (appData.latestBitcoinAPIResponse.final_balance / 1e8).toFixed(8) }} BTC
+                      {{ (appData.latestBitcoinAPIResponse.final_balance / 1e8).toFixed(8) }} {{ "BTC" | translate }}
 
                       <span class="text-grey7">
                         ≈
@@ -120,10 +118,10 @@
                             2
                           )
                         }}
-                        USD
+                        {{ "USD" | translate }}
                       </span>
                     </div>
-                    <div *ngIf="!appData.latestBitcoinAPIResponse">(Loading...)</div>
+                    <div *ngIf="!appData.latestBitcoinAPIResponse">({{ "Loading" | translate }}...)</div>
                   </div>
                 </div>
                 <div class="col-2 pl-2 my-auto" style="min-width: 85px">
@@ -132,14 +130,14 @@
                     class="btn btn-outline-secondary w-100 fs-15px p-5px"
                     style="border-radius: 3px; height: 35px"
                   >
-                    Refresh
+                    {{ "Refresh" | translate }}
                   </div>
                 </div>
               </div>
 
               <div class="row pl-15px pt-5px">
                 <div class="col-12 fs-15px pl-0px fc-muted" style="border-radius: 3px">
-                  Click "refresh" to check your bitcoin balance.
+                  {{ "Click-refresh-to-check-your-bitcoin-balance" | translate }}.
 
                   <i
                     (click)="tooltip3.toggle()"
@@ -158,19 +156,16 @@
 
           <!-- Step Two Box -->
           <div class="w-100 border-top border-color-grey">
-            <div
-              class="fs-15px pl-5px pr-5px ml-10px buy-deso__box-label-adjustment"
-              style="background-color: white"
-            >
-              Step Two
+            <div class="fs-15px pl-5px pr-5px ml-10px buy-deso__box-label-adjustment" style="background-color: white">
+              {{ "Step-Two" | translate }}
             </div>
 
             <!-- DeSo to buy input-->
             <div class="pl-15px pr-15px pt-5px">
               <div class="d-flex w-100 fs-18px font-weight-bold">
-                <div style="min-width: 120px">Buy $DESO with Bitcoin</div>
+                <div style="min-width: 120px">{{ "Buy-DESO-with-Bitcoin" | translate }}</div>
               </div>
-              <div class="fs-15px mt-20px font-weight-bold">$DESO to buy</div>
+              <div class="fs-15px mt-20px font-weight-bold">{{ "$DESO-to-buy" | translate }}</div>
               <div class="pt-5px d-flex align-items-center justify-content-start">
                 <input
                   class="form-control w-50 fs-15px lh-15px"
@@ -180,18 +175,21 @@
                   (ngModelChange)="_updateDeSoToBuy($event)"
                 />
                 <div class="ml-2 w-50 fs-15px">
-                  $DESO &middot;
+                  {{ "$DESO" | translate }} &middot;
                   <a class="text-grey7" (click)="_clickMaxDeSo()">
-                    <u>Max</u>
+                    <u>{{ "Max" | translate }}</u>
                   </a>
                 </div>
               </div>
               <div class="fs-12px mt-5px text-grey7" *ngIf="globalVars.BuyDeSoFeeBasisPoints">
-                <i>Includes {{ globalVars.BuyDeSoFeeBasisPoints / 100 }}% slippage</i>
+                <i>
+                  {{ "Includes" | translate }} {{ globalVars.BuyDeSoFeeBasisPoints / 100 }}%
+                  {{ "slippage" | translate }}
+                </i>
               </div>
 
               <!-- Bitcoin to exchange input-->
-              <div class="fs-15px mt-15px font-weight-bold">Bitcoin to swap</div>
+              <div class="fs-15px mt-15px font-weight-bold">{{ "Bitcoin-to-swap" | translate }}</div>
               <div class="pt-5px d-flex align-items-center justify-content-start">
                 <input
                   class="form-control w-50 fs-15px"
@@ -202,12 +200,12 @@
                   [(ngModel)]="buyDeSoFields.bitcoinToExchange"
                   (ngModelChange)="_updateBitcoinToExchange($event)"
                 />
-                <div class="ml-2 w-50 fs-15px">Bitcoin</div>
+                <div class="ml-2 w-50 fs-15px">{{ "Bitcoin" | translate }}</div>
               </div>
 
               <!-- Bitcoin network fee-->
               <div class="fs-15px mt-15px text-grey7">
-                Bitcoin network fee
+                {{ "Bitcoin-network-fee" | translate }}
 
                 <i
                   (click)="tooltip4.toggle()"
@@ -219,65 +217,57 @@
 
                 <div class="mt-1 w-100 fs-15px">
                   <div *ngIf="buyDeSoFields.error == null || buyDeSoFields.error === ''">
-                    {{ (buyDeSoFields.bitcoinTotalTransactionFeeSatoshis / 1e8).toFixed(8) }} Bitcoin ≈
+                    {{ (buyDeSoFields.bitcoinTotalTransactionFeeSatoshis / 1e8).toFixed(8) }}
+                    {{ "Bitcoin" | translate }} ≈
                     {{
                       appData.formatUSD(
-                        (buyDeSoFields.bitcoinTotalTransactionFeeSatoshis * appData.usdPerBitcoinExchangeRate) /
-                          1e8,
+                        (buyDeSoFields.bitcoinTotalTransactionFeeSatoshis * appData.usdPerBitcoinExchangeRate) / 1e8,
                         2
                       )
                     }}
-                    USD
+                    {{ "USD" | translate }}
                   </div>
                   <div *ngIf="buyDeSoFields.error != null && buyDeSoFields.error !== ''" style="margin-top: 0">
-                    0.00000000 Bitcoin ≈ {{ appData.formatUSD(0, 2) }} USD
+                    0.00000000 {{ "Bitcoin" | translate }} ≈ {{ appData.formatUSD(0, 2) }} {{ "USD" | translate }}
                   </div>
                 </div>
               </div>
 
               <!-- Total bitcion to swap -->
               <div class="fs-15px mt-15px text-grey7">
-                Total Bitcoin to swap
+                {{ "Total-Bitcoin-to-swap" | translate }}
                 <div class="mt-1 w-100 fs-15px">
                   <div *ngIf="!buyDeSoFields.error">
                     {{
                       (
-                        (buyDeSoFields.bitcoinToExchange * 1e8 +
-                          buyDeSoFields.bitcoinTotalTransactionFeeSatoshis) /
+                        (buyDeSoFields.bitcoinToExchange * 1e8 + buyDeSoFields.bitcoinTotalTransactionFeeSatoshis) /
                         1e8
                       ).toFixed(8)
                     }}
-                    Bitcoin ≈
+                    {{ "Bitcoin" | translate }} ≈
                     {{
                       appData.formatUSD(
-                        ((buyDeSoFields.bitcoinToExchange * 1e8 +
-                          buyDeSoFields.bitcoinTotalTransactionFeeSatoshis) *
+                        ((buyDeSoFields.bitcoinToExchange * 1e8 + buyDeSoFields.bitcoinTotalTransactionFeeSatoshis) *
                           appData.usdPerBitcoinExchangeRate) /
                           1e8,
                         2
                       )
                     }}
-                    USD
+                    {{ "USD" | translate }}
                   </div>
                   <div *ngIf="buyDeSoFields.error" style="margin-top: 0">
-                    0.00000000 Bitcoin ≈ {{ appData.formatUSD(0, 2) }} USD
+                    0.00000000 {{ "Bitcoin" | translate }} ≈ {{ appData.formatUSD(0, 2) }} {{ "USD" | translate }}
                   </div>
                 </div>
               </div>
 
-              <div
-                *ngIf="buyDeSoFields.error != null && buyDeSoFields.error !== ''"
-                class="w-100 fs-18px mt-15px"
-              >
+              <div *ngIf="buyDeSoFields.error != null && buyDeSoFields.error !== ''" class="w-100 fs-18px mt-15px">
                 <div class="red">
                   {{ buyDeSoFields.error }}
                 </div>
               </div>
-              <button
-                class="btn btn-primary font-weight-bold mt-25px mb-15px fs-15px btn-lg"
-                (click)="_clickBuyDeSo()"
-              >
-                Buy $DESO
+              <button class="btn btn-primary font-weight-bold mt-25px mb-15px fs-15px btn-lg" (click)="_clickBuyDeSo()">
+                {{ "Buy-DESO" | translate }}
               </button>
             </div>
           </div>

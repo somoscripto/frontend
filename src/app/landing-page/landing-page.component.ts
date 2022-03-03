@@ -3,6 +3,7 @@ import { AppRoutingModule } from "../app-routing.module";
 import { GlobalVarsService } from "../global-vars.service";
 import { Router } from "@angular/router";
 import { environment } from "src/environments/environment";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: "app-landing-page",
@@ -107,7 +108,8 @@ export class LandingPageComponent implements OnInit {
     },
   ];
 
-  constructor(public globalVars: GlobalVarsService, private router: Router) {}
+  constructor(public globalVars: GlobalVarsService, private router: Router, public translate: TranslateService) {}
+  currentLanguage = this.translate.defaultLang;
 
   ngOnInit() {
     if (!this.globalVars.showLandingPage()) {
@@ -116,6 +118,10 @@ export class LandingPageComponent implements OnInit {
   }
 
   getLogoBackground() {
-    return `url("${environment.node.logoAssetDir}camelcase_logo.svg")`
+    return `url("${environment.node.logoAssetDir}camelcase_logo.svg")`;
+  }
+
+  translateLang(lang) {
+    this.translate.setDefaultLang(lang);
   }
 }

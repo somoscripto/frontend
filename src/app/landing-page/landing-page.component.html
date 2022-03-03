@@ -5,7 +5,7 @@
       <div class="input-group w-auto">
         <div class="input-group-prepend">
           <label class="landing__nav-buy input-group-text">
-            {{ globalVars.desoToUSDExchangeRateToDisplay }} USD
+            {{ globalVars.desoToUSDExchangeRateToDisplay }} {{ "USD" | translate }}
           </label>
         </div>
         <div class="input-group-append">
@@ -14,7 +14,7 @@
             [routerLink]="'/' + globalVars.RouteNames.BUY_DESO"
             queryParamsHandling="merge"
           >
-            Buy $DESO
+            {{ "Buy-DESO" | translate }}
           </a>
         </div>
       </div>
@@ -23,24 +23,28 @@
 </div>
 <div class="w-100 d-lg-none d-flex align-items-center justify-content-center">
   <a class="landing__nav-link" (click)="globalVars.launchSignupFlow()">
-    Sign Up and Get <free-deso-message></free-deso-message><b>Free</b>
+    {{ "Sign-Up-and-Get" | translate }}
+    <free-deso-message></free-deso-message>
+    <b>{{ "Free" | translate }}</b>
   </a>
 </div>
 
 <div class="w-100 border-bottom px-10px">
   <div class="container-lg landing__header">
     <div class="row">
-      <div class="col landing__logo deso" [ngStyle]="{'background': getLogoBackground()}"></div>
+      <div class="col landing__logo deso" [ngStyle]="{ background: getLogoBackground() }"></div>
       <div class="col d-lg-flex d-none align-items-center">
         <a class="landing__nav-link" (click)="globalVars.launchSignupFlow()">
-          Sign Up and Get <free-deso-message></free-deso-message><b>Free</b>
+          {{ "Sign-Up-and-Get" | translate }}
+          <free-deso-message></free-deso-message>
+          <b>{{ "Free" | translate }}</b>
         </a>
       </div>
       <div class="d-flex align-items-center">
         <div class="input-group w-auto d-none d-sm-flex" style="margin-left: 25px">
           <div class="input-group-prepend">
             <label class="landing__nav-buy input-group-text">
-              {{ globalVars.desoToUSDExchangeRateToDisplay }} USD
+              {{ globalVars.desoToUSDExchangeRateToDisplay }} {{ "USD" | translate }}
             </label>
           </div>
           <div class="input-group-append">
@@ -49,14 +53,27 @@
               [routerLink]="'/' + globalVars.RouteNames.BUY_DESO"
               queryParamsHandling="merge"
             >
-              Buy $DESO
+              {{ "Buy-DESO" | translate }}
             </a>
           </div>
         </div>
-        <a class="landing__nav-link" href="https://docs.deso.org/" target="_blank">About</a>
-        <a class="landing__nav-link" href="https://docs.deso.org/#the-ultimate-vision" target="_blank">Vision</a>
+        <a class="landing__nav-link" href="https://docs.deso.org/" target="_blank">{{ "About" | translate }}</a>
+        <a class="landing__nav-link" href="https://docs.deso.org/#the-ultimate-vision" target="_blank">
+          {{ "Vision" | translate }}
+        </a>
         <a class="landing__nav-link" href="https://docs.deso.org/zhong-wen" target="_blank">中文</a>
-        <a class="landing__nav-link" (click)="globalVars.launchSignupFlow()">Sign Up</a>
+        <a class="landing__nav-link" (click)="globalVars.launchSignupFlow()">{{ "Sign-Up" | translate }}</a>
+
+        <a class="landing__nav-link">
+          <select
+            class="form-control w-100 fs-15px text-grey5 font-weight-bold cursor-pointer"
+            [(ngModel)]="currentLanguage"
+            (change)="translateLang($event.target.value)"
+          >
+            <option value="en" class="fs-15px text-grey5 font-weight-bold">En</option>
+            <option value="es" class="fs-15px text-grey5 font-weight-bold">Es</option>
+          </select>
+        </a>
       </div>
     </div>
   </div>
@@ -66,38 +83,45 @@
   <div class="row">
     <div class="col text-center">
       <h1 class="font-weight-bold text-black slide-up-1">
-        The Crypto
+        {{ "The-Crypto" | translate }}
         <br class="d-sm-none" />
-        Social Network
+        {{ "Social-Network" | translate }}
       </h1>
       <div class="slide-up-2">
         <a class="btn btn-primary landing__sign-up" (click)="globalVars.launchSignupFlow()">
-          <div style="font-weight: bold; font-size: 20px;">
-            Sign Up
-          </div>
+          <div style="font-weight: bold; font-size: 20px">{{ "Sign-Up" | translate }}</div>
           <div class="mt-1 fs-15px">
-            Get <free-deso-message></free-deso-message> Free
+            {{ "Get" | translate }}
+            <free-deso-message></free-deso-message>
+            {{ "Free" | translate }}
           </div>
         </a>
-        <a class="landing__log-in d-none d-sm-block" (click)="globalVars.launchLoginFlow()" style="font-size: 15px;">Log in</a>
-        <a class="landing__log-in d-block d-sm-none mt-3" (click)="globalVars.launchLoginFlow()" style="font-size: 15px;">Log in</a>
+        <a class="landing__log-in d-none d-sm-block" (click)="globalVars.launchLoginFlow()" style="font-size: 15px">
+          {{ "Log-in" | translate }}
+        </a>
+        <a
+          class="landing__log-in d-block d-sm-none mt-3"
+          (click)="globalVars.launchLoginFlow()"
+          style="font-size: 15px"
+        >
+          {{ "Log-in" | translate }}
+        </a>
       </div>
     </div>
   </div>
 
   <div class="row d-flex justify-content-center slide-up-3">
     <div class="col-lg-8 col-md-9 col-sm-12 text-center landing__prop">
-      <h3 class="landing__prop-header">Everyone gets their own coin</h3>
+      <h3 class="landing__prop-header">{{ "Everyone-gets-their-own-coin" | translate }}</h3>
       <p class="landing__prop-desc">
-        Your favorite creator has a coin you can buy or sell. The price
+        {{ "Your-favorite-creator" | translate }}
         <br class="d-none d-sm-block" />
-        goes up as more people buy.
-        <b>You can have your own coin too.</b>
+        {{ "goes-up-as-more-people-buy" | translate }}
+        <b>{{ "You-can-have-your-own-coin-too" | translate }}</b>
         <br />
         <br />
-        <a href="https://docs.deso.org/" target="_blank">Learn More</a>
-        &nbsp;
-        &nbsp;
+        <a href="https://docs.deso.org/" target="_blank">{{ "Learn-More" | translate }}</a>
+        &nbsp; &nbsp;
         <a href="https://docs.deso.org/zhong-wen" target="_blank">中文</a>
       </p>
       <div class="row d-flex justify-content-center">
@@ -105,9 +129,9 @@
           <table class="table table-borderless text-left landing__board">
             <thead>
               <tr>
-                <th>Name</th>
+                <th>{{ "Name" | translate }}</th>
                 <th width="12%"></th>
-                <th class="text-center">Price</th>
+                <th class="text-center">{{ "Price" | translate }}</th>
                 <th></th>
               </tr>
             </thead>
@@ -144,7 +168,7 @@
                     [routerLink]="AppRoutingModule.buyCreatorPath(user.name)"
                     queryParamsHandling="merge"
                   >
-                    Buy
+                    {{ "Buy" | translate }}
                   </a>
                 </td>
               </tr>
@@ -162,25 +186,24 @@
         [routerLink]="'/' + globalVars.RouteNames.CREATORS"
         queryParamsHandling="merge"
       >
-        Find creators to follow
+        {{ "Find-creators-to-follow" | translate }}
       </a>
     </div>
   </div>
 
   <div class="row d-flex justify-content-center invisible" animateOnScroll animationName="slide-up">
     <div class="col-lg-8 col-md-9 col-sm-12 text-center landing__prop">
-      <h3 class="landing__prop-header">Decentralized like Bitcoin</h3>
+      <h3 class="landing__prop-header">{{ "Decentralized-like-Bitcoin" | translate }}</h3>
       <p class="landing__prop-desc">
-        This app is built on DeSo.
-        <b>DeSo is not a company.</b>
-        It's an open-source blockchain like Bitcoin.
+        {{ "This-app-is-built-on-DeSo" | translate }}
+        <b>{{ "DeSo-is-not-a-company" | translate }}</b>
+        {{ "It-s-an-open-source-blockchain-like-Bitcoin" | translate }}
         <br class="d-none d-md-block" />
-        You can own a piece by buying the $DESO coin.
+        {{ "You-can-own-a-piece-by-buying-the-$DESO-coin" | translate }}
         <br />
         <br />
-        <a href="https://docs.deso.org/#the-ultimate-vision" target="_blank">Learn More</a>
-        &nbsp;
-        &nbsp;
+        <a href="https://docs.deso.org/#the-ultimate-vision" target="_blank">{{ "Learn-More" | translate }}</a>
+        &nbsp; &nbsp;
         <a href="https://docs.deso.org/zhong-wen" target="_blank">中文</a>
       </p>
       <div class="row d-flex justify-content-center">
@@ -221,7 +244,7 @@
   <div class="row d-flex justify-content-center invisible" animateOnScroll animationName="slide-up">
     <div class="row d-flex justify-content-center">
       <a class="btn btn-sm btn-outline-primary landing__btn-cta" (click)="globalVars.launchSignupFlow()">
-        Create your feed
+        {{ "Create-your-feed" | translate }}
       </a>
     </div>
   </div>
@@ -230,17 +253,17 @@
 <div class="container-lg border-top border-left border-right landing__platform">
   <div class="row d-flex justify-content-center invisible" animateOnScroll animationName="slide-up">
     <div class="col-sm-11 col-md-12 text-center">
-      <h2 class="landing__platform-header">A platform owned by its users.</h2>
+      <h2 class="landing__platform-header">{{ "A-platform-owned-by-its-users" | translate }}.</h2>
       <h4 class="landing__platform-desc">
-        Bitcoin is decentralizing
-        <b>money,</b>
+        {{ "Bitcoin-is-decentralizing" | translate }}
+        <b>{{ "money" | translate }},</b>
         <br />
         <br />
-        {{ environment.node.name }} is decentralizing
-        <b>social media.</b>
+        {{ environment.node.name }} {{ "is-decentralizing" | translate }}
+        <b>{{ "social-media" | translate }}.</b>
       </h4>
       <a class="btn btn-sm btn-outline-primary landing__btn-cta" href="https://docs.deso.org/" target="_blank">
-        Learn More
+        {{ "Learn-More" | translate }}
       </a>
     </div>
   </div>
@@ -254,8 +277,12 @@
       animationName="slide-up"
     >
       <div class="col text-center">
-        <a class="btn btn-primary landing__sign-up" (click)="globalVars.launchSignupFlow()">Sign Up</a>
-        <a class="landing__log-in d-none d-md-block" (click)="globalVars.launchLoginFlow()">Log in</a>
+        <a class="btn btn-primary landing__sign-up" (click)="globalVars.launchSignupFlow()">
+          {{ "Sign-Up" | translate }}
+        </a>
+        <a class="landing__log-in d-none d-md-block" (click)="globalVars.launchLoginFlow()">
+          {{ "Log-in" | translate }}
+        </a>
       </div>
     </div>
   </div>
@@ -265,9 +292,9 @@
   <div class="container">
     <div class="row d-flex justify-content-center">
       <div class="col mb-0 text-center">
-        <p class="text-grey9 fs-20px">The future is decentralized.</p>
-        <br>
-        <a href="mailto:node.admin+contact@protonmail.com" class="fs-12px">Contact</a>
+        <p class="text-grey9 fs-20px">{{ "The-future-is-decentralized" | translate }}.</p>
+        <br />
+        <a href="mailto:node.admin+contact@protonmail.com" class="fs-12px">{{ "Contact" | translate }}</a>
       </div>
     </div>
   </div>

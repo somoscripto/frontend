@@ -29,6 +29,8 @@
     "@ethereumjs/common": "^2.5.0",
     "@ethereumjs/tx": "^3.3.2",
     "@ethereumjs/vm": "^5.5.3",
+    "@ngx-translate/core": "^12.1.2",
+    "@ngx-translate/http-loader": "^4.0.0",
     "amplitude-js": "^7.4.3",
     "assert": "^2.0.0",
     "autolinker": "^3.14.2",

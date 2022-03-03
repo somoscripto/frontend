@@ -1,7 +1,5 @@
 <div class="p-15px">
-  <div>
-    Add a new fee recipient for {{ txnType }} transactions
-  </div>
+  <div>{{ "Add-a-new-fee-recipient-for" | translate }} {{ txnType }} {{ "transactions" | translate }}</div>
   <div>
     <search-bar
       [showCloutavista]="false"
@@ -19,24 +17,26 @@
   </div>
   <div class="input-group py-15px">
     <div class="input-group-prepend">
-      <span class="input-group-text">Fee Amount Received (in $DESO)</span>
+      <span class="input-group-text">{{ "Fee-Amount-Received" | translate }} ({{ "in-$DESO" | translate }})</span>
     </div>
     <input class="form-control" type="number" matInput [(ngModel)]="feeAmount" />
   </div>
-  <button (click)="setTransactionFees()" class="btn btn-outline-primary fs-15px" [disabled]="feeAmount <= 0 || !selectedCreator?.PublicKeyBase58Check || updatingTransactionFees">
-    Add Fee
+  <button
+    (click)="setTransactionFees()"
+    class="btn btn-outline-primary fs-15px"
+    [disabled]="feeAmount <= 0 || !selectedCreator?.PublicKeyBase58Check || updatingTransactionFees"
+  >
+    {{ "Add-Fee" | translate }}
   </button>
   <div *ngIf="transactionFeeMap[txnType]?.length" class="py-15px">
-    <div>
-      Existing Fee Recipients for {{ txnType }} Transactions
-    </div>
+    <div>{{ "Existing-Fee-Recipients-for" | translate }} {{ txnType }} {{ "Transactions" | translate }}</div>
     <div *ngFor="let transactionFee of transactionFeeMap[txnType]" class="d-flex flex-start align-items-center">
       <simple-profile-card
         [profile]="transactionFee.ProfileEntryResponse || { PublicKeyBase58Check: transactionFee.PublicKeyBase58Check }"
         [hideFollowLink]="true"
         [singleColumn]="true"
       ></simple-profile-card>
-      <span> {{ globalVars.nanosToDeSo(transactionFee.AmountNanos) }} $DESO </span>
+      <span>{{ globalVars.nanosToDeSo(transactionFee.AmountNanos) }} {{ "$DESO" | translate }}</span>
     </div>
   </div>
 </div>

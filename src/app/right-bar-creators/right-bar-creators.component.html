@@ -7,14 +7,14 @@
   <!-- DeSo Price / Balance -->
   <div class="right-bar-creators__balance-box br-12px p-15px mb-30px fs-13px text-grey5 font-weight-bold">
     <div class="d-flex justify-content-between">
-      <div>$DESO Price</div>
+      <div>{{ "$DESO" | translate }} {{ "Price" | translate }}</div>
       <div>
         <span>~{{ globalVars.desoToUSDExchangeRateToDisplay }}</span>
-        <span class="text-grey5">&nbsp;USD per coin</span>
+        <span class="text-grey5">&nbsp;{{ "USD-per-coin" | translate }}</span>
       </div>
     </div>
     <div *ngIf="globalVars.loggedInUser" class="d-flex justify-content-between pt-10px">
-      <div class="d-flex" style="min-width: 150px">Your $DESO</div>
+      <div class="d-flex" style="min-width: 150px">{{ "Your-$DESO" | translate }}</div>
       <div class="d-flex flex-column justify-content-end flex-wrap" style="align-items: flex-end">
         <div>
           <!-- Amount in DeSo-->
@@ -25,27 +25,27 @@
           <!-- Amount in USD-->
           <div class="ml-10px mr-10px">≈</div>
           <div *ngIf="globalVars.satoshisPerDeSoExchangeRate">
-            <span>
-              {{ globalVars.nanosToUSD(globalVars.loggedInUser.BalanceNanos, 2) }} USD
-            </span>
+            <span>{{ globalVars.nanosToUSD(globalVars.loggedInUser.BalanceNanos, 2) }} {{ "USD" | translate }}</span>
           </div>
-          <div *ngIf="!globalVars.satoshisPerDeSoExchangeRate">Fetching... USD</div>
+          <div *ngIf="!globalVars.satoshisPerDeSoExchangeRate">
+            {{ "Fetching" | translate }}... {{ "USD" | translate }}
+          </div>
         </div>
       </div>
     </div>
     <div class="d-flex justify-content-between pt-10px" *ngIf="globalVars.transactionFeeMax > 0">
-      <div>Node fee per tx:</div>
+      <div>{{ "Node-fee-per-tx" | translate }}:</div>
       <div>
-        {{ globalVars.nanosToUSD(globalVars.transactionFeeMax, 4) }} Max
+        {{ globalVars.nanosToUSD(globalVars.transactionFeeMax, 4) }} {{ "Max" | translate }}
         <span
-              (click)="tooltip.toggle()"
-              class="ml-1 mb-1 cursor-pointer text-primary"
-              matTooltipClass="global__mat-tooltip global__mat-tooltip-font-size"
-              [matTooltip]="globalVars.transactionFeeInfo"
-              #tooltip="matTooltip"
-            >
-            <i class="fas fa-info-circle fa-md align-middle"></i>
-          </span>
+          (click)="tooltip.toggle()"
+          class="ml-1 mb-1 cursor-pointer text-primary"
+          matTooltipClass="global__mat-tooltip global__mat-tooltip-font-size"
+          [matTooltip]="globalVars.transactionFeeInfo"
+          #tooltip="matTooltip"
+        >
+          <i class="fas fa-info-circle fa-md align-middle"></i>
+        </span>
       </div>
     </div>
     <div class="mt-3">
@@ -53,13 +53,24 @@
     </div>
   </div>
 
-  <div *ngIf="globalVars.loggedInUser && !globalVars.loggedInUser.EmailVerified && !inTutorial" class="bg-light br-12px p-15px mb-30px fs-13px">
-    <p>Your email is not verified.</p>
+  <div
+    *ngIf="globalVars.loggedInUser && !globalVars.loggedInUser.EmailVerified && !inTutorial"
+    class="bg-light br-12px p-15px mb-30px fs-13px"
+  >
+    <p>{{ "Your-email-is-not-verified" | translate }}.</p>
     <div *ngIf="globalVars.loggedInUser.HasEmail">
-      <a class="font-weight-bold" (click)="globalVars.resendVerifyEmail()" *ngIf="!globalVars.resentVerifyEmail">Resend Verification Email</a>
-      <p *ngIf="globalVars.resentVerifyEmail">Sent!</p>
+      <a class="font-weight-bold" (click)="globalVars.resendVerifyEmail()" *ngIf="!globalVars.resentVerifyEmail">
+        {{ "Resend-Verification-Email" | translate }}
+      </a>
+      <p *ngIf="globalVars.resentVerifyEmail">{{ "Sent" | translate }}!</p>
     </div>
-    <a *ngIf="!globalVars.loggedInUser.HasEmail" [routerLink]="'/' + globalVars.RouteNames.SETTINGS" class="font-weight-bold">Update your email</a>
+    <a
+      *ngIf="!globalVars.loggedInUser.HasEmail"
+      [routerLink]="'/' + globalVars.RouteNames.SETTINGS"
+      class="font-weight-bold"
+    >
+      {{ "Update-your-email" | translate }}
+    </a>
   </div>
 
   <!-- Sign Up Flow -->
@@ -94,7 +105,7 @@
     <div class="pt-5px" *ngIf="activeRightTabOption.poweredBy">
       <a class="link--unstyled fs-12px text-grey7" [href]="activeRightTabOption.poweredBy.link" target="_blank">
         <i class="fas fa-external-link-alt pr-5px"></i>
-        Powered by {{ activeRightTabOption.poweredBy.name }}
+        {{ "Powered-by" | translate }} {{ activeRightTabOption.poweredBy.name }}
       </a>
     </div>
   </div>

@@ -3,36 +3,31 @@
   class="global__top-bar global__top-bar__height d-flex align-items-center pl-15px fs-18px font-weight-bold border-bottom border-color-grey"
   *ngIf="!inTutorial"
 >
-  <top-bar-mobile-navigation-control class="mr-15px d-lg-none d-inline-block" *ngIf="!inTutorial"></top-bar-mobile-navigation-control>
-  Update Profile
+  <top-bar-mobile-navigation-control
+    class="mr-15px d-lg-none d-inline-block"
+    *ngIf="!inTutorial"
+  ></top-bar-mobile-navigation-control>
+  {{ "Update-Profile" | translate }}
 </div>
 
 <div class="global__top-bar__height" *ngIf="!inTutorial"></div>
 
-<div *ngIf="inTutorial" class="d-flex align-items-center justify-content-start w-100 p-3 fs-18px font-weight-bold border-bottom border-color-grey secalt-bg">
+<div
+  *ngIf="inTutorial"
+  class="d-flex align-items-center justify-content-start w-100 p-3 fs-18px font-weight-bold border-bottom border-color-grey secalt-bg"
+>
   <top-bar-mobile-hamburger-menu class="mr-15px d-lg-none d-inline-block"></top-bar-mobile-hamburger-menu>
   <div>
-    <h3 class="mb-1 fs-24px font-weight-semibold">
-      Update Profile
-    </h3>
-    <h5 class="fs-15px fc-muted">
-      Step 3 of 6
-    </h5>
+    <h3 class="mb-1 fs-24px font-weight-semibold">{{ "Update-Profile" | translate }}</h3>
+    <h5 class="fs-15px fc-muted">{{ "Step" | translate }} 3 {{ "of" | translate }} 6</h5>
   </div>
 </div>
 
-<div
-  class="p-3"
-  style="margin-bottom: -20px"
-  *ngIf="inTutorial"
->
+<div class="p-3" style="margin-bottom: -20px" *ngIf="inTutorial">
   <div class="d-flex flex-column justify-flex-start">
-    <h5 class="fs-15px">
-      Everyone needs a profile. Let's update yours!
-    </h5>
+    <h5 class="fs-15px">{{ "Everyone-needs-a-profile.-Let's-update-yours" | translate }}!</h5>
   </div>
 </div>
-
 
 <div *ngIf="loggedInUser.CanCreateProfile; else elseBlock">
   <div class="d-flex flex-column">
@@ -42,32 +37,38 @@
       <!-- Create Profile Fee Warning -->
       <div
         *ngIf="
-          !inTutorial && !globalVars.loggedInUser?.ProfileEntryResponse &&
-          ((!globalVars.loggedInUser?.HasPhoneNumber && !globalVars.loggedInUser?.JumioVerified) || !globalVars.isCompProfileCreation) &&
+          !inTutorial &&
+          !globalVars.loggedInUser?.ProfileEntryResponse &&
+          ((!globalVars.loggedInUser?.HasPhoneNumber && !globalVars.loggedInUser?.JumioVerified) ||
+            !globalVars.isCompProfileCreation) &&
           globalVars.createProfileFeeNanos > 0
         "
         class="p-15px bg-warning"
       >
-        Creating a profile costs {{ globalVars.createProfileFeeInDeSo() }} DeSo ≈
-        {{ globalVars.createProfileFeeInUsd() }} USD.
+        {{ "Creating-a-profile-costs" | translate }} {{ globalVars.createProfileFeeInDeSo() }}
+        {{ "DeSo" | translate }} ≈ {{ globalVars.createProfileFeeInUsd() }} {{ "USD" | translate }}.
         <br />
-        This helps prevent spam.
+        {{ "This-helps-prevent-spam" | translate }}.
       </div>
       <!-- Form Inputs -->
       <div *ngIf="globalVars.loggedInUser" class="fs-18px px-15px global__mobile-scrollable-section disable-scrollbars">
-        <div class="mt-30px font-weight-bold">Username</div>
+        <div class="mt-30px font-weight-bold">{{ "Username" | translate }}</div>
         <div class="mt-10px">
-          <input [(ngModel)]="usernameInput" class="form-control fs-15px lh-18px p-10px" placeholder="Enter username" />
+          <input
+            [(ngModel)]="usernameInput"
+            class="form-control fs-15px lh-18px p-10px"
+            placeholder="{{ 'Enter-a-username' | translate }}"
+          />
           <div
             *ngIf="profileUpdateErrors.usernameError"
             [ngClass]="{ 'fc-red': profileUpdateErrors.usernameError }"
             class="fs-13px font-italic mt-5px"
           >
-            Please set a username
+            {{ "Please-set-a-username" | translate }}
           </div>
         </div>
 
-        <div class="mt-30px font-weight-bold">Description</div>
+        <div class="mt-30px font-weight-bold">{{ "Description" | translate }}</div>
 
         <div class="mt-10px">
           <textarea
@@ -82,11 +83,11 @@
             [ngClass]="{ 'fc-red': profileUpdateErrors.descriptionError }"
             class="fs-13px font-italic"
           >
-            Description can only be 180 characters
+            {{ "Description-can-only-be-180-characters" | translate }}
           </div>
         </div>
 
-        <div class="mt-30px font-weight-bold">Avatar</div>
+        <div class="mt-30px font-weight-bold">{{ "Avatar" | translate }}</div>
         <div class="mt-5px">
           <div *ngIf="profilePicInput != null && profilePicInput.length > 0">
             <div [style.background-image]="'url(' + profilePicInput + ')'"></div>
@@ -116,7 +117,9 @@
                 padding: 0;
               "
             />
-            <button type="file" class="btn btn-outline-primary fs-15px lh-15px p-10px">Upload Image</button>
+            <button type="file" class="btn btn-outline-primary fs-15px lh-15px p-10px">
+              {{ "Upload-Image" | translate }}
+            </button>
           </div>
           <div>
             <div
@@ -124,12 +127,12 @@
               [ngClass]="{ 'fc-red': profileUpdateErrors.profilePicError }"
               class="fs-13px text-grey5 mt-5px"
             >
-              No image selected
+              {{ "No-image-selected" | translate }}
             </div>
           </div>
 
           <div *ngIf="!inTutorial">
-            <div class="mt-30px font-weight-bold">Founder Reward Percentage</div>
+            <div class="mt-30px font-weight-bold">{{ "Founder-Reward-Percentage" | translate }}</div>
 
             <div class="mt-10px">
               <div class="d-flex align-items-center justify-content-start h-100">
@@ -149,15 +152,18 @@
                   #tooltip="matTooltip"
                 ></i>
               </div>
-              <div *ngIf="globalVars.loggedInUser.UsersWhoHODLYouCount === 0" class="fc-muted font-italic fs-13px pt-5px">
-                * You must purchase your own coin before lowering your founder reward.
+              <div
+                *ngIf="globalVars.loggedInUser.UsersWhoHODLYouCount === 0"
+                class="fc-muted font-italic fs-13px pt-5px"
+              >
+                * {{ "You-must-purchase-your-own-coin-before-lowering-your-founder-reward" | translate }}.
               </div>
               <div
                 *ngIf="profileUpdateErrors.founderRewardError"
                 [ngClass]="{ 'fc-red': profileUpdateErrors.founderRewardError }"
                 class="fs-13px font-italic pt-5px"
               >
-                Please set a founder reward between 0-100.
+                {{ "Please-set-a-founder-reward-between-0-100" | translate }}.
               </div>
             </div>
           </div>
@@ -173,10 +179,12 @@
               </a>
             </div>
             <i *ngIf="profileUpdated" class="far fa-check-circle fa-lg fc-blue ml-10px"></i>
-            <div *ngIf="inTutorial && (!globalVars.loggedInUser?.MustCompleteTutorial || globalVars.loggedInUser?.IsAdmin)" (click)="globalVars.skipTutorial()" class="px-15px">
-              <a class="btn btn-outline-primary btn-lg fs-15px text-left mt-5px">
-                Exit
-              </a>
+            <div
+              *ngIf="inTutorial && (!globalVars.loggedInUser?.MustCompleteTutorial || globalVars.loggedInUser?.IsAdmin)"
+              (click)="globalVars.skipTutorial()"
+              class="px-15px"
+            >
+              <a class="btn btn-outline-primary btn-lg fs-15px text-left mt-5px">{{ "Exit" | translate }}</a>
             </div>
           </div>
 

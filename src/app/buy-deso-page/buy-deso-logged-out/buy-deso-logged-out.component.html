@@ -5,7 +5,7 @@
   >
     <div class="d-flex align-items-center">
       <top-bar-mobile-navigation-control class="mr-15px d-lg-none d-inline-block"></top-bar-mobile-navigation-control>
-      Buy $DESO
+      {{ "Buy-DESO" | translate }}
     </div>
 
     <top-bar-mobile-log-in-or-sign-up></top-bar-mobile-log-in-or-sign-up>
@@ -15,7 +15,7 @@
     <div class="global__top-bar__height"></div>
     <!-- Description, Logged Out -->
     <div class="fc-default fs-15px mt-30px pr-15px ml-15px pb-30px">
-      $DESO is a cryptocurrency like Bitcoin, only it powers the first decentralized social network.
+      {{ "DESO-is-a-cryptocurrency-like-Bitcoin-only-it-powers-the-first-decentralized-social-network" | translate }}.
     </div>
 
     <!-- Spacer -->
@@ -27,13 +27,15 @@
         class="fs-18px fc-default font-weight-bold ml-15px buy-deso__box-label-adjustment"
         style="background-color: white"
       >
-        How do I get $DESO?
+        {{ "How-do-I-get-DESO" | translate }}
       </div>
       <div>
         <div class="d-flex w-100 mt-5px pl-15px fs-15px pb-15px pr-30px">
           <div style="min-width: 120px">
-            <a (click)="globalVars.launchSignupFlow()" class="--link">Create an anonymous account</a>
-            to buy $DESO in under a minute.
+            <a (click)="globalVars.launchSignupFlow()" class="--link">
+              {{ "Create-an-anonymous-account" | translate }}
+            </a>
+            {{ "to-buy-DESO-in-under-a-minute" | translate }}.
           </div>
         </div>
       </div>
@@ -47,48 +49,48 @@
         class="fs-18px mb-10px fc-default font-weight-bold ml-15px buy-deso__box-label-adjustment"
         style="background-color: white"
       >
-        What is $DESO useful for?
+        {{ "What-is-DESO-useful-for" | translate }}
       </div>
       <div>
         <div class="d-flex w-100 pl-15px pt-15px pb-15px fs-15px buy-deso__amount-background">
           <div style="min-width: 120px">
-            You can use it to buy and sell
+            {{ "You-can-use-it-to-buy-and-sell" | translate }}
             <a
               [routerLink]="['/' + globalVars.RouteNames.CREATORS]"
               [routerLinkActive]="['selected']"
               [routerLinkActiveOptions]="{ exact: true }"
               queryParamsHandling="merge"
             >
-              creator coins
+              {{ "creator-coins" | translate }}
             </a>
           </div>
         </div>
         <div class="d-flex w-100 justify-content-between pl-15px pr-15px pb-15px mt-15px fs-15px fc-default">
-          You can use it to send messages to people
+          {{ "You-can-use-it-to-send-messages-to-people" | translate }}
         </div>
         <div
           class="d-flex w-100 justify-content-between buy-deso__amount-background pl-15px pr-15px pt-15px pb-15px mb-15px fs-15px fc-default"
         >
           <div>
-            You can use it to
+            {{ "You-can-use-it-to" | translate }}
             <a
               [routerLink]="['/' + globalVars.RouteNames.BROWSE]"
               [routerLinkActive]="['selected']"
               [routerLinkActiveOptions]="{ exact: true }"
               queryParamsHandling="merge"
             >
-              submit posts
+              {{ "submit-posts" | translate }}
             </a>
-            of your own
+            {{ "of-your-own" | translate }}
           </div>
         </div>
         <div class="d-flex w-100 justify-content-between pl-15px pr-15px pb-15px fs-15px fc-default">
-          You can buy it anonymously with Bitcoin in under a minute
+          {{ "You-can-buy-it-anonymously-with-Bitcoin-in-under-a-minute" | translate }}
         </div>
         <div
           class="d-flex w-100 justify-content-between buy-deso__amount-background pl-15px pr-15px pt-15px pb-15px fs-15px fc-default"
         >
-          <div>It's blockchain's "iPhone moment."</div>
+          <div>{{ "It-s-blockchain-s-iPhone-moment" | translate }}</div>
         </div>
       </div>
     </div>

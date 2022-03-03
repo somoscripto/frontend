@@ -1,3 +1,4 @@
+import { TranslateService } from "@ngx-translate/core";
 import { Component, EventEmitter, HostBinding, Input, Output } from "@angular/core";
 import { GlobalVarsService } from "../global-vars.service";
 import { AppRoutingModule, RouteNames } from "../app-routing.module";
@@ -32,9 +33,14 @@ export class LeftBarComponent {
     public globalVars: GlobalVarsService,
     private identityService: IdentityService,
     private backendApi: BackendApiService,
-    private router: Router
+    private router: Router,
+    public translate: TranslateService
   ) {}
+  currentLanguage = this.translate.defaultLang;
 
+  translateLang(lang) {
+    this.translate.setDefaultLang(lang);
+  }
   // send logged out users to the landing page
   // send logged in users to browse
   homeLink(): string | string[] {

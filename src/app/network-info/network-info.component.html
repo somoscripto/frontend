@@ -1,19 +1,21 @@
 <div class="fs-15px font-weight-bold mt-15px px-15px">
-  Node Sync State
+  {{ "Node-Sync-State" | translate }}
   <div>
     <span *ngIf="globalVars.nodeInfo.DeSoStatus.State === 'SYNCING_BITCOIN'" style="color: goldenrod">
-      Syncing Bitcoin Headers
+      {{ "Syncing-Bitcoin-Headers" | translate }}
     </span>
     <span *ngIf="globalVars.nodeInfo.DeSoStatus.State === 'SYNCING_HEADERS'" style="color: goldenrod">
-      Syncing DeSo Headers
+      {{ "Syncing-DeSo-Headers" | translate }}
     </span>
     <span *ngIf="globalVars.nodeInfo.DeSoStatus.State === 'SYNCING_BLOCKS'" style="color: goldenrod">
-      Syncing DeSo Blocks
+      {{ "Syncing-DeSo-Blocks" | translate }}
     </span>
     <span *ngIf="globalVars.nodeInfo.DeSoStatus.State === 'NEED_BLOCKS'" style="color: goldenrod">
-      Syncing Last DeSo Blocks
+      {{ "Syncing-Last-DeSo-Blocks" | translate }}
     </span>
-    <span *ngIf="globalVars.nodeInfo.DeSoStatus.State === 'FULLY_CURRENT'" style="color: green">Fully Synced</span>
+    <span *ngIf="globalVars.nodeInfo.DeSoStatus.State === 'FULLY_CURRENT'" style="color: green">
+      {{ "Fully-Synced" | translate }}
+    </span>
   </div>
 </div>
 
@@ -21,11 +23,11 @@
   <span (click)="isOpen.detailedSyncInfo = !isOpen.detailedSyncInfo" class="font-weight-bold cursor-pointer">
     <i *ngIf="!isOpen.detailedSyncInfo" class="fas fa-caret-right"></i>
     <i *ngIf="isOpen.detailedSyncInfo" class="fas fa-caret-down"></i>
-    Detailed Sync Info
+    {{ "Detailed-Sync-Info" | translate }}
   </span>
   <div *ngIf="isOpen.detailedSyncInfo" class="ml-15px">
     <div *ngIf="globalVars.nodeInfo.DeSoStatus.State === 'SYNCING_HEADERS'">
-      DeSo Headers Left:
+      {{ "DeSo-Headers-Left" | translate }}:
       <div class="fc-blue">
         {{ globalVars.nodeInfo.DeSoStatus.HeadersRemaining }}
       </div>
@@ -36,13 +38,13 @@
         globalVars.nodeInfo.DeSoStatus.State === 'NEED_BLOCKS'
       "
     >
-      <div>DeSo Blocks Left:</div>
+      <div>{{ "DeSo-Blocks-Left" | translate }}:</div>
       <div class="fc-blue">
         {{ globalVars.nodeInfo.DeSoStatus.BlocksRemaining }}
       </div>
     </div>
 
-    Last Block Height:
+    {{ "Last-Block-Height" | translate }}:
     <div class="fc-blue d-flex align-items-center">
       <span>
         {{ globalVars.nodeInfo.DeSoStatus.LatestHeaderHeight }}
@@ -54,7 +56,7 @@
         <i class="far fa-check-circle fa-xs"></i>
       </div>
     </div>
-    Last Block Hash:
+    {{ "Last-Block-Hash" | translate }}:
     <div class="fc-blue d-flex align-items-center">
       {{ globalVars.nodeInfo.DeSoStatus.LatestHeaderHash.slice(0, 15) }}...
       <div (click)="_copyNetworkInfo('lastBlockHash')" class="btn btn-outline-secondary d-flex fs-15px p-5px ml-10px">
@@ -64,12 +66,12 @@
         <i class="far fa-check-circle fa-xs"></i>
       </div>
     </div>
-    Last Block Time:
+    {{ "Last-Block-Time" | translate }}:
     <div class="fc-blue">
       {{ _tstampToDate(globalVars.nodeInfo.DeSoStatus.LatestHeaderTstampSecs) }}
     </div>
     <span *ngIf="globalVars.nodeInfo.DeSoStatus.LatestTxIndexHeight">
-      Last TxIndex Block Height:
+      {{ "Last-TxIndex-Block-Height" | translate }}:
       <div class="fc-blue">
         {{ globalVars.nodeInfo.DeSoStatus.LatestTxIndexHeight }}
       </div>
@@ -81,25 +83,25 @@
   <span (click)="isOpen.minerInfo = !isOpen.minerInfo" class="font-weight-bold cursor-pointer">
     <i *ngIf="!isOpen.minerInfo" class="fas fa-caret-right"></i>
     <i *ngIf="isOpen.minerInfo" class="fas fa-caret-down"></i>
-    Miner Info
+    {{ "Miner-Info" | translate }}
   </span>
   <div *ngIf="isOpen.minerInfo" class="ml-15px">
-    Miner Status:
+    {{ "Miner-Status" | translate }}:
     <div
       *ngIf="globalVars.nodeInfo.MinerPublicKeys != null && globalVars.nodeInfo.MinerPublicKeys.length > 0"
       class="font-weight-bold"
       style="color: green"
     >
-      Currently Mining
+      {{ "Currently-Mining" | translate }}
     </div>
     <div
       *ngIf="globalVars.nodeInfo.MinerPublicKeys == null || globalVars.nodeInfo.MinerPublicKeys.length == 0"
       class="font-weight-bold"
       style="color: red"
     >
-      Not Mining
+      {{ "Not-Mining" | translate }}
     </div>
-    Miner Public Keys:
+    {{ "Miner-Public-Keys" | translate }}:
     <div *ngIf="globalVars.nodeInfo.MinerPublicKeys != null && globalVars.nodeInfo.MinerPublicKeys.length > 0">
       <div *ngFor="let key of globalVars.nodeInfo.MinerPublicKeys; let ii = index" class="fc-blue d-flex">
         {{ key.slice(0, 15) }}...
@@ -118,13 +120,13 @@
       *ngIf="globalVars.nodeInfo.MinerPublicKeys == null || globalVars.nodeInfo.MinerPublicKeys.length == 0"
       class="fc-blue"
     >
-      No miner public keys found.
+      {{ "No-miner-public-keys-found" | translate }}.
     </div>
-    Update Miner Public Key List:
+    {{ "Update-Miner-Public-Key-List" | translate }}:
     <div class="fc-blue d-flex align-items-center">
       <input
         [(ngModel)]="updatedMinerPubKeys"
-        placeholder="Enter a new pub key."
+        placeholder="{{ 'Enter-a-new-pub-key' | translate }}."
         style="width: 200px; border-radius: 3px"
       />
       <div
@@ -132,14 +134,18 @@
         (click)="updateMiners()"
         class="btn btn-outline-secondary fs-15px lh-15px p-5px ml-5px"
       >
-        Update
+        {{ "Update" | translate }}
       </div>
-      <div *ngIf="updatingMiners" class="btn btn-outline-secondary fs-15px lh-15px p-5px ml-5px">Updating</div>
+      <div *ngIf="updatingMiners" class="btn btn-outline-secondary fs-15px lh-15px p-5px ml-5px">
+        {{ "Updating" | translate }}
+      </div>
     </div>
     <div *ngIf="!stoppingMiners" (click)="stopMining()" class="btn btn-outline-secondary fs-15px lh-15px p-5px mt-10px">
-      Stop Mining
+      {{ "Stop-Mining" | translate }}
     </div>
-    <div *ngIf="stoppingMiners" class="btn btn-outline-secondary fs-15px lh-15px p-5px mt-10px">Stopping</div>
+    <div *ngIf="stoppingMiners" class="btn btn-outline-secondary fs-15px lh-15px p-5px mt-10px">
+      {{ "Stopping" | translate }}
+    </div>
   </div>
 </div>
 
@@ -147,21 +153,19 @@
   <span (click)="isOpen.desoNode = !isOpen.desoNode" class="font-weight-bold cursor-pointer">
     <i *ngIf="!isOpen.desoNode" class="fas fa-caret-right"></i>
     <i *ngIf="isOpen.desoNode" class="fas fa-caret-down"></i>
-    DeSo Node Info
+    {{ "DeSo-Node-Info" | translate }}
   </span>
-  <div *ngIf="isOpen.desoNode && updatingDeSoPeer" class="ml-15px fc-muted">Updating DeSo peers...</div>
+  <div *ngIf="isOpen.desoNode && updatingDeSoPeer" class="ml-15px fc-muted">
+    {{ "Updating-DeSo-peers" | translate }}...
+  </div>
   <div *ngIf="isOpen.desoNode && !updatingDeSoPeer" class="ml-15px">
-    Outbound Peers ({{ globalVars.nodeInfo.DeSoOutboundPeers.length }}):
+    {{ "Outbound-Peers" | translate }} ({{ globalVars.nodeInfo.DeSoOutboundPeers.length }}):
     <div
       class="fc-blue border border-color-grey px-5px pt-5px"
       style="max-height: 150px; overflow-y: scroll; width: fit-content"
     >
-      <div
-        *ngIf="
-          globalVars.nodeInfo.DeSoOutboundPeers == null || globalVars.nodeInfo.DeSoOutboundPeers.length === 0
-        "
-      >
-        Not connected to any outbound peers.
+      <div *ngIf="globalVars.nodeInfo.DeSoOutboundPeers == null || globalVars.nodeInfo.DeSoOutboundPeers.length === 0">
+        {{ "Not-connected-to-any-outbound-peers" | translate }}.
       </div>
       <div *ngFor="let peer of globalVars.nodeInfo.DeSoOutboundPeers; index as peerIndex">
         <div class="d-flex align-items-center justify-content-between pb-5px">
@@ -183,23 +187,19 @@
               (click)="disconnectDeSoPeer(peer.IP + ':' + peer.ProtocolPort)"
               class="btn btn-outline-secondary fs-15px lh-15px p-5px ml-5px"
             >
-              Disconnect
+              {{ "Disconnect" | translate }}
             </div>
           </div>
         </div>
       </div>
     </div>
-    Inbound Peers ({{ globalVars.nodeInfo.DeSoInboundPeers.length }}):
+    {{ "Inbound-Peers" | translate }} ({{ globalVars.nodeInfo.DeSoInboundPeers.length }}):
     <div
       class="fc-blue border border-color-grey px-5px pt-5px"
       style="max-height: 150px; overflow-y: scroll; width: fit-content"
     >
-      <div
-        *ngIf="
-          globalVars.nodeInfo.DeSoInboundPeers == null || globalVars.nodeInfo.DeSoInboundPeers.length === 0
-        "
-      >
-        Not connected to any inbound peers.
+      <div *ngIf="globalVars.nodeInfo.DeSoInboundPeers == null || globalVars.nodeInfo.DeSoInboundPeers.length === 0">
+        {{ "Not-connected-to-any-inbound-peers" | translate }}.
       </div>
       <div *ngFor="let peer of globalVars.nodeInfo.DeSoInboundPeers; index as peerIndex">
         <div class="d-flex align-items-center justify-content-between pb-5px">
@@ -221,24 +221,23 @@
               (click)="disconnectDeSoPeer(peer.IP + ':' + peer.ProtocolPort)"
               class="btn btn-outline-secondary fs-15px lh-15px p-5px ml-5px"
             >
-              Disconnect
+              {{ "Disconnect" | translate }}
             </div>
           </div>
         </div>
       </div>
     </div>
-    Unconnected Peers ({{ globalVars.nodeInfo.DeSoUnconnectedPeers.length }}):
+    {{ "Unconnected-Peers" | translate }} ({{ globalVars.nodeInfo.DeSoUnconnectedPeers.length }}):
     <div
       class="fc-blue border border-color-grey px-5px pt-5px"
       style="max-height: 150px; overflow-y: scroll; width: fit-content"
     >
       <div
         *ngIf="
-          globalVars.nodeInfo.DeSoUnconnectedPeers == null ||
-          globalVars.nodeInfo.DeSoUnconnectedPeers.length === 0
+          globalVars.nodeInfo.DeSoUnconnectedPeers == null || globalVars.nodeInfo.DeSoUnconnectedPeers.length === 0
         "
       >
-        No other peers available.
+        {{ "No-other-peers-available" | translate }}.
       </div>
       <div *ngFor="let peer of globalVars.nodeInfo.DeSoUnconnectedPeers; index as peerIndex">
         <div class="d-flex align-items-center justify-content-between pb-5px">
@@ -260,24 +259,21 @@
               (click)="connectDeSoPeer(peer.IP + ':' + peer.ProtocolPort)"
               class="btn btn-outline-secondary fs-15px lh-15px p-5px ml-5px"
             >
-              Connect
+              {{ "Connect" | translate }}
             </div>
           </div>
         </div>
       </div>
     </div>
-    Manual Connection:
+    {{ "Manual-Connection" | translate }}:
     <div class="fc-blue d-flex align-items-center">
       <input
         [(ngModel)]="manualDeSoPeer"
-        placeholder="Enter an address."
+        placeholder="{{ 'Enter-an-address' | translate }}."
         style="width: 200px; border-radius: 3px"
       />
-      <div
-        (click)="connectDeSoPeer(manualDeSoPeer)"
-        class="btn btn-outline-secondary fs-15px lh-15px p-5px ml-5px"
-      >
-        Connect
+      <div (click)="connectDeSoPeer(manualDeSoPeer)" class="btn btn-outline-secondary fs-15px lh-15px p-5px ml-5px">
+        {{ "Connect" | translate }}
       </div>
     </div>
   </div>

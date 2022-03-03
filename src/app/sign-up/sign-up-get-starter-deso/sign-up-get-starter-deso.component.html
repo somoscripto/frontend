@@ -9,14 +9,16 @@ can refactor.
 
 <div *ngIf="screenToShow == SignUpGetStarterDeSoComponent.CREATE_PHONE_NUMBER_VERIFICATION_SCREEN">
   <div *ngIf="displayForSignupFlow">
-    <div class="mt-15px fs-15px fc-muted">STEP 3 of 4</div>
-    <div class="mt-15px fs-24px font-weight-bold">Get Starter DeSo</div>
+    <div class="mt-15px fs-15px fc-muted">{{ "STEP" | translate }} 3 {{ "of" | translate }} 4</div>
+    <div class="mt-15px fs-24px font-weight-bold">{{ "Get-Starter-DeSo" | translate }}</div>
 
-    <div class="fs-18px mt-15px mb-15px">DeSo is a cryptocurrency that's required to use the site.</div>
+    <div class="fs-18px mt-15px mb-15px">
+      {{ "DeSo-is-a-cryptocurrency-thats-required-to-use-the-site" | translate }}.
+    </div>
   </div>
 
   <div class="fs-18px">
-    Verify your phone number for free DeSo. Your phone number will never be shared with anyone.
+    {{ "Verify-your-phone-number-for-free-DeSo.-Your-phone-number-will-never-be-shared-with-anyone" | translate }}.
   </div>
 
   <div class="d-flex mt-15px justify-content-end">
@@ -26,13 +28,10 @@ can refactor.
         (click)="onSkipButtonClicked()"
         class="btn btn-outline-primary font-weight-bold fs-15px"
       >
-        Skip
+        {{ "Skip" | translate }}
       </a>
-      <a
-        (click)="openIdentityPhoneNumberVerification()"
-        class="btn btn-primary font-weight-bold fs-15px ml-10px"
-      >
-       Verify
+      <a (click)="openIdentityPhoneNumberVerification()" class="btn btn-primary font-weight-bold fs-15px ml-10px">
+        {{ "Verify" | translate }}
       </a>
     </div>
   </div>
@@ -40,16 +39,19 @@ can refactor.
 
 <div *ngIf="screenToShow == SignUpGetStarterDeSoComponent.COMPLETED_PHONE_NUMBER_VERIFICATION_SCREEN">
   <div *ngIf="displayForSignupFlow">
-    <div class="mt-15px fs-15px fc-muted">STEP 3 of 4</div>
-    <div class="mt-15px mb-15px fs-24px font-weight-bold">Get Starter DeSo</div>
+    <div class="mt-15px fs-15px fc-muted">{{ "STEP" | translate }} 3 {{ "of" | translate }} 4</div>
+    <div class="mt-15px mb-15px fs-24px font-weight-bold">{{ "Get-Starter-DeSo" | translate }}</div>
   </div>
 
   <div class="fs-15px mb-15px">
-    Your phone number was verified. We sent you a small amount of DeSo, which is enough to post and follow people.
+    {{
+      "Your-phone-number-was-verified-We-sent-you-a-small-amount-of-DeSo-which-is-enough-to-post-and-follow-people"
+        | translate
+    }}.
   </div>
 
   <div *ngIf="displayForSignupFlow; else elseBlock" class="d-flex mt-15px justify-content-between">
-    <a (click)="onSkipButtonClicked()" class="btn btn-primary font-weight-bold fs-15px">Next</a>
+    <a (click)="onSkipButtonClicked()" class="btn btn-primary font-weight-bold fs-15px">{{ "Next" | translate }}</a>
   </div>
   <ng-template #elseBlock>
     <a
@@ -58,7 +60,7 @@ can refactor.
       queryParamsHandling="merge"
       class="btn btn-primary font-weight-bold fs-15px mt-5px mb-5px mr-15px"
     >
-      Buy DeSo
+      {{ "Buy-DeSo" | translate }}
     </a>
 
     <a
@@ -67,7 +69,7 @@ can refactor.
       queryParamsHandling="merge"
       class="btn btn-outline-primary font-weight-bold fs-15px mt-5px mr-15px mb-5px"
     >
-      Update your profile
+      {{ "Update-your-profile" | translate }}
     </a>
 
     <a
@@ -76,7 +78,7 @@ can refactor.
       queryParamsHandling="merge"
       class="btn btn-outline-primary font-weight-bold fs-15px mt-5px mr-15px mb-5px"
     >
-      Browse
+      {{ "Browse" | translate }}
     </a>
   </ng-template>
 </div>

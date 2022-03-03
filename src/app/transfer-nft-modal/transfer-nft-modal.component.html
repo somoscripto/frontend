@@ -1,22 +1,23 @@
 <div app-theme class="nft-modal-container p-15px">
-  <nft-modal-header [header]="isSelectingSerialNumber ? 'Select an edition' : 'Transfer NFT'" [bsModalRef]="bsModalRef"></nft-modal-header>
+  <nft-modal-header
+    [header]="isSelectingSerialNumber ? 'Select an edition' : 'Transfer NFT'"
+    [bsModalRef]="bsModalRef"
+  ></nft-modal-header>
   <simple-center-loader *ngIf="loading"></simple-center-loader>
   <div *ngIf="!loading">
-    <div *ngIf="transferableSerialNumbers?.length" [ngClass]="{'d-none': isSelectingSerialNumber}">
-      <div class="fs-15px text-grey5">
-        You are about to transfer the NFT shown below.
-      </div>
+    <div *ngIf="transferableSerialNumbers?.length" [ngClass]="{ 'd-none': isSelectingSerialNumber }">
+      <div class="fs-15px text-grey5">You are about to transfer the NFT shown below.</div>
 
       <div *ngIf="!globalVars.isMobile()" class="d-flex justify-content-between nft-modal-bid-details">
-          <span class="m-16px">Number #{{ selectedSerialNumber?.SerialNumber }}</span>
-          <a class="fc-blue m-16px" (click)="goBackToSerialSelection()">Change</a>
+        <span class="m-16px">{{ "Number" | translate }} #{{ selectedSerialNumber?.SerialNumber }}</span>
+        <a class="fc-blue m-16px" (click)="goBackToSerialSelection()">{{ "Change" | translate }}</a>
       </div>
 
       <div *ngIf="globalVars.isMobile()">
         <div class="nft-modal-bid-details d-flex justify-content-between p-16px">
-          <span class="font-weight-bold">Number #{{ selectedSerialNumber?.SerialNumber }}</span>
+          <span class="font-weight-bold">{{ "Number" | translate }} #{{ selectedSerialNumber?.SerialNumber }}</span>
           <div>
-            <a class="fc-blue ml-16px" (click)="goBackToSerialSelection()">Change</a>
+            <a class="fc-blue ml-16px" (click)="goBackToSerialSelection()">{{ "Change" | translate }}</a>
           </div>
         </div>
       </div>
@@ -38,7 +39,7 @@
 
       <div *ngIf="post.HasUnlockable">
         <div class="fs-15px pt-15px pb-30px text-grey5">
-          This NFT includes unlockable content. Enter it below.
+          {{ "This-NFT-includes-unlockable-content-Enter-it-below" | translate }}.
         </div>
 
         <textarea
@@ -48,7 +49,7 @@
           cdkAutosizeMinRows="5"
           [(ngModel)]="unlockableText"
           #autosize="cdkTextareaAutosize"
-          placeholder="Enter URL, code to redeem, link, etc... "
+          placeholder="{{ 'Enter-URL-code-to-redeem-link-etc' | translate }} "
         ></textarea>
       </div>
 
@@ -88,11 +89,9 @@
         [showInteractionDetails]="false"
         [contentShouldLinkToThread]="false"
       ></feed-post>
-
     </div>
 
-
-    <div *ngIf="transferableSerialNumbers?.length" [ngClass]="{'d-none': !isSelectingSerialNumber}">
+    <div *ngIf="transferableSerialNumbers?.length" [ngClass]="{ 'd-none': !isSelectingSerialNumber }">
       <div class="nft-modal__subtitle">These are the serial numbers that are transferable</div>
       <div class="container fs-15px px-0px">
         <nft-select-serial-number

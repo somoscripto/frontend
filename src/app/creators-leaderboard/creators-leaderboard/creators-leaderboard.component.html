@@ -5,7 +5,7 @@
   >
     <div class="d-flex align-items-center">
       <top-bar-mobile-navigation-control class="mr-15px d-lg-none d-inline-block"></top-bar-mobile-navigation-control>
-      Buy Creator Coins
+      {{ "Buy-Creator-Coins" | translate }}
     </div>
 
     <top-bar-mobile-log-in-or-sign-up></top-bar-mobile-log-in-or-sign-up>
@@ -14,7 +14,7 @@
   <!--Header Desktop-->
   <div class="d-none d-lg-block w-100 px-15px fs-18px font-weight-bold fc-default border-bottom border-color-grey">
     <div class="d-flex align-items-center justify-content-between">
-      <div class="d-flex align-items-center">Buy Creator Coins</div>
+      <div class="d-flex align-items-center">{{ "Buy-Creator-Coins" | translate }}</div>
       <search-bar></search-bar>
     </div>
   </div>
@@ -25,16 +25,18 @@
       class="row no-gutters px-15px border-bottom background-color-light-grey py-15px pl-15px"
       style="margin-left: 0; margin-right: 0"
     >
-      <div class="text-grey5 fs-18px font">All creators have a coin. Buy your favorites and get on their team!</div>
+      <div class="text-grey5 fs-18px font">
+        {{ "All-creators-have-a-coin-Buy-your-favorites-and-get-on-their-team" | translate }}!
+      </div>
     </div>
 
     <!-- Headers -->
     <div class="fs-15px">
       <div class="row px-15px no-gutters border-bottom py-15px fc-muted" style="margin-left: 0; margin-right: 0">
-        <div class="col mb-0">Name</div>
+        <div class="col mb-0">{{ "Name" | translate }}</div>
 
         <div class="col-2 mb-0 text-right" style="min-width: 100px">
-          <div class="pl-15px">Price</div>
+          <div class="pl-15px">{{ "Price" | translate }}</div>
         </div>
 
         <!--Hide on mobile-->
@@ -97,7 +99,7 @@
             [routerLink]="AppRoutingModule.buyCreatorPath(item.Username)"
             queryParamsHandling="merge"
           >
-            Buy
+            {{ "Buy" | translate }}
           </a>
 
           <div *ngIf="appData.loggedInUser" class="d-inline-block text-right">
