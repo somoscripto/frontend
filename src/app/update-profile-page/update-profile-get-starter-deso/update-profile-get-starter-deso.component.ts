@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { GlobalVarsService } from "../../global-vars.service";
 import { RouteNames } from "../../app-routing.module";
 import { IdentityService } from "../../identity.service";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: "update-profile-get-starter-deso",
@@ -11,7 +12,11 @@ import { IdentityService } from "../../identity.service";
 export class UpdateProfileGetStarterDeSoComponent {
   RouteNames = RouteNames;
 
-  constructor(public globalVars: GlobalVarsService, private identityService: IdentityService) {}
+  constructor(
+    public globalVars: GlobalVarsService,
+    private identityService: IdentityService,
+    private translate: TranslateService
+  ) {}
 
   // rounded to nearest integer
   minPurchaseAmountInUsdRoundedUp() {
@@ -21,7 +26,11 @@ export class UpdateProfileGetStarterDeSoComponent {
   }
 
   getCreateProfileMessage(): string {
-    return "You need to verify a phone number or purchase DESO with Bitcoin in order to create a profile. This helps prevent spam.";
+    if (this.translate.getDefaultLang() === "en") {
+      return "You need to verify a phone number or purchase DESO with Bitcoin in order to create a profile. This helps prevent spam.";
+    } else {
+      return "Debe verificar un número de teléfono o comprar DESO con Bitcoin para crear un perfil. Esto ayuda a prevenir el spam.";
+    }
   }
 
   launchPhoneNumberVerification() {
