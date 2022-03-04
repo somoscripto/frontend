@@ -658,7 +658,6 @@
   "Consumptive-Use-terms": "When you purchase or otherwise acquire DESO or Creator Coins (collectively, “DESO Coins”), you represent, warrant and agree that",
   "Consumptive-Use-terms1": "you are acquiring DESO Coins solely for consumptive use in connection with the Blockchain and not for distribution",
   "Consumptive-Use-terms2": "you are not acquiring DESO Coins as an investment and you have no expectation of economic benefit or profit as a holder of DESO Coins",
-
   "Consumptive-Use-terms3": "you are acquiring DESO Coins for your own use and not with a view to sell the DESO Coins to anyone else",
   "Consumptive-Use-terms4": "you are not acquiring any equity or other ownership or legal interest in the Interface or the Blockchain by virtue of owning DESO Coins",
   "Consumptive-Use-terms5": "you will not portray DESO Coins as an investment or an opportunity to obtain an economic benefit or profit",
@@ -812,7 +811,6 @@
   "Posts": "Posts",
   "Profiles": "Profiles",
   "NFTs": "NFTs",
-  "Tutorial": "Tutorial",
   "Network": "Network",
   "Mempool": "Mempool",
   "Wyre": "Wyre",
@@ -829,5 +827,8 @@
   "Top Daily Gainers": "Top Daily Gainers",
   "Top Daily Diamonded Creators": "Top Daily Diamonded Creators",
   "Top Community Projects": "Top Community Projects",
-  "Top Creators All Time": "Top Creators All Time"
+  "Top Creators All Time": "Top Creators All Time",
+  "Coins Purchased": "Coins Purchased",
+  "Coins Received": "Coins Received",
+  "DAO Holdings": "DAO Holdings"
 }

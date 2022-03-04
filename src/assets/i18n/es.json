@@ -808,9 +808,9 @@
   "Global": "Global",
   "⚡ NFT Showcase ⚡": "⚡ Escaparate de NFT ⚡",
   "fetching...": "la sobreprima...",
+  "Posts": "Publicaciones",
   "Profiles": "Perfiles",
   "NFTs": "NFTs",
-  "Tutorial": "Tutorial",
   "Network": "La red",
   "Mempool": "Mempool",
   "Wyre": "Wyre",
@@ -827,5 +827,8 @@
   "Top Daily Gainers": "Principales ganadores diarios",
   "Top Daily Diamonded Creators": "Los mejores creadores diarios de diamantes",
   "Top Community Projects": "Principales Proyectos Comunitarios",
-  "Top Creators All Time": "Mejores creadores de todos los tiempos"
+  "Top Creators All Time": "Mejores creadores de todos los tiempos",
+  "Coins Purchased": "Monedas compradas",
+  "Coins Received": "Monedas Recibidas",
+  "DAO Holdings": "Participaciones DAO"
 }
