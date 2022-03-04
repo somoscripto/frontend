@@ -2,7 +2,7 @@
   "Buy-DESO": "Comprar $DESO",
   "Sign-Up-and-Get": "Regístrese y obtenga",
   "Free": "Gratis",
-  "USD": "Dólar estadounidense",
+  "USD": "USD",
   "Sign-Up": "Inscribirse",
   "Get": "Obtener",
   "About": "Sobre",
@@ -804,5 +804,16 @@
   "Set-max-copies-per-NFT": "Establecer copias máximas por NFT",
   "Set-fee-per-copy-of-an-NFT": "Tarifa fija por copia de un NFT",
   "Link-to-Arweave-image": "Enlace a la imagen de Arweave",
-  "Datepicker": "Selector de fechas"
+  "Datepicker": "Selector de fechas",
+  "Global": "Global",
+  "⚡ NFT Showcase ⚡": "⚡ Escaparate de NFT ⚡",
+  "fetching...": "la sobreprima...",
+  "Profiles": "Perfiles",
+  "NFTs": "NFTs",
+  "Tutorial": "Tutorial",
+  "Network": "La red",
+  "Mempool": "Mempool",
+  "Wyre": "Wyre",
+  "Jumio": "Jumio",
+  "Referral Program": "Programa de referencia"
 }

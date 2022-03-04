@@ -805,5 +805,17 @@
   "Set-max-copies-per-NFT": "Set max copies per NFT",
   "Set-fee-per-copy-of-an-NFT": "Set fee per copy of an NFT",
   "Link-to-Arweave-image": "Link to Arweave image",
-  "Datepicker": "Datepicker"
+  "Datepicker": "Datepicker",
+  "Global": "Global",
+  "⚡ NFT Showcase ⚡": "⚡ NFT Showcase ⚡",
+  "fetching...": "fetching...",
+  "Posts": "Posts",
+  "Profiles": "Profiles",
+  "NFTs": "NFTs",
+  "Tutorial": "Tutorial",
+  "Network": "Network",
+  "Mempool": "Mempool",
+  "Wyre": "Wyre",
+  "Jumio": "Jumio",
+  "Referral Program": "Referral Program"
 }
