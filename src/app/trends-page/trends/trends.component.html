@@ -16,7 +16,7 @@
           [(ngModel)]="activeTab"
         >
           <option *ngFor="let option of tabs" [value]="option" class="text-grey5 font-weight-bold">
-            {{ option }}
+            {{ option | translate }}
           </option>
         </select>
       </div>
