@@ -5,7 +5,7 @@
     </button>
   </div>
 
-  <div class="px-15px pt-15px pb-5px" style="max-height:500px; overflow-y:hidden;">
+  <div class="px-15px pt-15px pb-5px" style="max-height: 500px; overflow-y: hidden">
     <feed-post
       [post]="parentPost"
       [includePaddingOnPost]="false"
@@ -17,9 +17,13 @@
     ></feed-post>
   </div>
 
-
   <div class="fs-12px text-muted feed-create-comment-form__reply-container">
-    {{ isQuote ? "Quoting " : "Replying to " }}
+    <ng-template [ngIf]="isQuote">
+      {{ "Quoting " | translate }}
+    </ng-template>
+    <ng-template [ngIf]="!isQuote">
+      {{ "Replying to " | translate }}
+    </ng-template>
     @{{ parentPost.ProfileEntryResponse.Username }}
   </div>
 

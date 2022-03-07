@@ -26,11 +26,7 @@ export class UpdateProfileGetStarterDeSoComponent {
   }
 
   getCreateProfileMessage(): string {
-    if (this.translate.getDefaultLang() === "en") {
-      return "You need to verify a phone number or purchase DESO with Bitcoin in order to create a profile. This helps prevent spam.";
-    } else {
-      return "Debe verificar un número de teléfono o comprar DESO con Bitcoin para crear un perfil. Esto ayuda a prevenir el spam.";
-    }
+    return "You need to verify a phone number or purchase DESO with Bitcoin in order to create a profile. This helps prevent spam.";
   }
 
   launchPhoneNumberVerification() {

@@ -195,8 +195,9 @@ export class NotificationsListComponent {
         // TODO: We cannot compute the USD value of the sale without saving the amount of DeSo
         // that was used to complete the transaction in the backend, which we are too lazy to do.
         // So for now we just tell the user the amount of their coin that was sold.
-        result.action = `${actorName} sold <b>${this.globalVars.nanosToDeSo(ccMeta.CreatorCoinToSellNanos)} $${userProfile.Username
-          }.</b>`;
+        result.action = `${actorName} sold <b>${this.globalVars.nanosToDeSo(ccMeta.CreatorCoinToSellNanos)} $${
+          userProfile.Username
+        }.</b>`;
         return result;
       }
     } else if (txnMeta.TxnType === "CREATOR_COIN_TRANSFER") {
@@ -213,8 +214,9 @@ export class NotificationsListComponent {
           postText = `<i class="text-grey7">${truncatedPost}</i>`;
           result.link = AppRoutingModule.postPath(cctMeta.PostHashHex);
         }
-        result.action = `${actorName} gave <b>${cctMeta.DiamondLevel.toString()} diamond${cctMeta.DiamondLevel > 1 ? "s" : ""
-          }</b> (~${this.globalVars.getUSDForDiamond(cctMeta.DiamondLevel)}) ${postText}`;
+        result.action = `${actorName} gave <b>${cctMeta.DiamondLevel.toString()} diamond${
+          cctMeta.DiamondLevel > 1 ? "s" : ""
+        }</b> (~${this.globalVars.getUSDForDiamond(cctMeta.DiamondLevel)}) ${postText}`;
       } else {
         result.icon = "fas fa-paper-plane fc-blue";
         result.action = `${actorName} sent you <b>${this.globalVars.nanosToDeSo(
@@ -288,7 +290,6 @@ export class NotificationsListComponent {
         }
       }
 
-
       return result;
     } else if (txnMeta.TxnType === "LIKE") {
       const likeMeta = txnMeta.LikeTxindexMetadata;
@@ -332,10 +333,11 @@ export class NotificationsListComponent {
       } else if (this.globalVars.loggedInUser?.PublicKeyBase58Check === nftBidMeta.OwnerPublicKeyBase58Check) {
         result.action = nftBidMeta.BidAmountNanos
           ? `${actorName} bid ${this.globalVars.nanosToDeSo(
-            nftBidMeta.BidAmountNanos,
-            2
-          )} DESO (~${this.globalVars.nanosToUSD(nftBidMeta.BidAmountNanos, 2)}) for serial number ${nftBidMeta.SerialNumber
-          }`
+              nftBidMeta.BidAmountNanos,
+              2
+            )} DESO (~${this.globalVars.nanosToUSD(nftBidMeta.BidAmountNanos, 2)}) for serial number ${
+              nftBidMeta.SerialNumber
+            }`
           : `${actorName} cancelled their bid on serial number ${nftBidMeta.SerialNumber}`;
         result.icon = nftBidMeta.BidAmountNanos ? "fas fa-dollar-sign fc-blue" : "fas fa-dollar-sign fc-red";
         return result;
@@ -478,14 +480,16 @@ export class NotificationsListComponent {
       }
       switch (daoCoinMeta.OperationType) {
         case "mint": {
-          result.action = `minted ${this.globalVars.hexNanosToUnitString(daoCoinMeta.CoinsToMintNanos)} ${daoCoinMeta.CreatorUsername
-            } DAO coin`;
+          result.action = `minted ${this.globalVars.hexNanosToUnitString(daoCoinMeta.CoinsToMintNanos)} ${
+            daoCoinMeta.CreatorUsername
+          } DAO coin`;
           result.icon = "fas fa-coins fc-green";
           return result;
         }
         case "burn": {
-          result.action = `${actorName} burned ${this.globalVars.hexNanosToUnitString(daoCoinMeta.CoinsToBurnNanos)} ${daoCoinMeta.CreatorUsername
-            } DAO coin`;
+          result.action = `${actorName} burned ${this.globalVars.hexNanosToUnitString(daoCoinMeta.CoinsToBurnNanos)} ${
+            daoCoinMeta.CreatorUsername
+          } DAO coin`;
           result.icon = "fa fa-fire fc-red";
           return result;
         }
@@ -560,12 +564,14 @@ export class NotificationsListComponent {
       return "";
     }
     const coinRoyaltyStr = coinRoyalty
-      ? `a royalty of ${usePercent ? this.getPercentRoyaltyString(coinRoyalty) : this.getRoyaltyAmountString(coinRoyalty)
-      } to your creator coin`
+      ? `a royalty of ${
+          usePercent ? this.getPercentRoyaltyString(coinRoyalty) : this.getRoyaltyAmountString(coinRoyalty)
+        } to your creator coin`
       : "";
     const desoRoyaltyStr = desoRoyalty
-      ? `a royalty of ${usePercent ? this.getPercentRoyaltyString(desoRoyalty) : this.getRoyaltyAmountString(desoRoyalty)
-      } to your wallet`
+      ? `a royalty of ${
+          usePercent ? this.getPercentRoyaltyString(desoRoyalty) : this.getRoyaltyAmountString(desoRoyalty)
+        } to your wallet`
       : "";
     if (!coinRoyaltyStr && !desoRoyaltyStr) {
       return "";

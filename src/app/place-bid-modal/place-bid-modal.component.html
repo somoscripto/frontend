@@ -134,7 +134,12 @@
           (click)="placeBid()"
           [disabled]="placingBids || errors"
         >
-          {{ placingBids ? "Placing Bids" : "Place Bid" }}
+          <ng-template [ngIf]="placingBids">
+            {{ "Placing Bids" | translate }}
+          </ng-template>
+          <ng-template [ngIf]="!placingBids">
+            {{ "Place Bid" | translate }}
+          </ng-template>
         </button>
         <div class="fs-15px ml-30px cursor-pointer text-grey7" (click)="navigateToBuyDESO()">
           {{ "Buy-DESO" | translate }}

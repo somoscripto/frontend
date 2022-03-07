@@ -108,7 +108,7 @@
               *ngFor="let item of this.creatorCoinTrade.currencyConstantsToHumanLabel() | keyvalue"
               [value]="item.key"
             >
-              {{ item.value }}
+              {{ item.value | translate }}
             </option>
           </select>
         </div>

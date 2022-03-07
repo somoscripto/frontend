@@ -23,7 +23,12 @@
       (click)="sellNFT()"
       [disabled]="addDisabled"
     >
-      {{ sellingNFT ? "Selling NFTs" : "Add" }}
+      <ng-template [ngIf]="sellingNFT">
+        {{ "Selling NFTs" | translate }}
+      </ng-template>
+      <ng-template [ngIf]="!sellingNFT">
+        {{ "Add" | translate }}
+      </ng-template>
     </button>
     <div *ngIf="sellingNFT" class="pl-15px">
       {{ sellNFTCounter }} {{ "of" | translate }} {{ sellNFTTotal }} {{ "sold" | translate }}

@@ -29,7 +29,9 @@
     {{ "Add-Fee" | translate }}
   </button>
   <div *ngIf="transactionFeeMap[txnType]?.length" class="py-15px">
-    <div>{{ "Existing-Fee-Recipients-for" | translate }} {{ txnType }} {{ "Transactions" | translate }}</div>
+    <div>
+      {{ "Existing-Fee-Recipients-for" | translate }} {{ txnType | translate }} {{ "Transactions" | translate }}
+    </div>
     <div *ngFor="let transactionFee of transactionFeeMap[txnType]" class="d-flex flex-start align-items-center">
       <simple-profile-card
         [profile]="transactionFee.ProfileEntryResponse || { PublicKeyBase58Check: transactionFee.PublicKeyBase58Check }"

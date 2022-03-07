@@ -72,7 +72,12 @@
             (post.HasUnlockable && (unlockableText === null || unlockableText === ''))
           "
         >
-          {{ transferringNFT ? "Transferring NFT" : "Transfer NFT" }}
+          <ng-template [ngIf]="transferringNFT">
+            {{ "Transferring NFT" | translate }}
+          </ng-template>
+          <ng-template [ngIf]="!transferringNFT">
+            {{ "Transfer NFT" | translate }}
+          </ng-template>
         </button>
       </div>
 

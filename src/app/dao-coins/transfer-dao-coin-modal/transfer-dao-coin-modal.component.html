@@ -42,10 +42,10 @@
   </button>
   <ng-container *ngIf="validationErrors.length">
     <div *ngFor="let validationError of validationErrors" class="pt-5px fc-red">
-      {{ validationError }}
+      {{ validationError | translate }}
     </div>
   </ng-container>
   <div class="fc-red pt-5px" *ngIf="backendErrors">
-    {{ backendErrors }}
+    {{ backendErrors | translate }}
   </div>
 </div>

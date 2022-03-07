@@ -89,7 +89,12 @@
           (click)="acceptTransfer()"
           [disabled]="acceptingTransfer"
         >
-          {{ acceptingTransfer ? "Accepting Transfer" : "Accept Transfer" }}
+          <ng-template [ngIf]="acceptingTransfer">
+            {{ "Accepting Transfer" | translate }}
+          </ng-template>
+          <ng-template [ngIf]="!acceptingTransfer">
+            {{ "Accept Transfer" | translate }}
+          </ng-template>
         </button>
       </div>
     </div>

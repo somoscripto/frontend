@@ -175,7 +175,12 @@
                 [ngClass]="{ 'btn-loading': updateProfileBeingCalled }"
                 class="btn btn-primary btn-lg font-weight-bold fs-15px mt-5px"
               >
-                {{ inTutorial ? "Next" : "Update Profile" }}
+                <ng-template [ngIf]="inTutorial">
+                  {{ "Next" | translate }}
+                </ng-template>
+                <ng-template [ngIf]="!inTutorial">
+                  {{ "Update Profile" | translate }}
+                </ng-template>
               </a>
             </div>
             <i *ngIf="profileUpdated" class="far fa-check-circle fa-lg fc-blue ml-10px"></i>

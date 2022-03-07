@@ -27,7 +27,7 @@
         <div class="d-flex justify-content-between">
           <span>{{ "Transfer-Restriction-Status" | translate }}:&nbsp;</span>
           <span class="font-weight-bold">
-            {{ getDisplayTransferRestrictionStatus(myDAOCoin?.TransferRestrictionStatus) }}
+            {{ getDisplayTransferRestrictionStatus(myDAOCoin?.TransferRestrictionStatus) | translate }}
           </span>
         </div>
         <div class="d-flex justify-content-between">
@@ -130,7 +130,7 @@
               [value]="option"
               class="text-grey5 font-weight-bold"
             >
-              {{ getDisplayTransferRestrictionStatus(option) }}
+              {{ getDisplayTransferRestrictionStatus(option) | translate }}
             </option>
           </select>
         </div>

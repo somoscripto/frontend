@@ -214,7 +214,7 @@
 
     <div *ngIf="error != null && error !== ''" class="w-100 fs-18px mt-15px">
       <div class="red">
-        {{ error }}
+        {{ error | translate }}
       </div>
     </div>
     <button class="btn btn-primary font-weight-bold mt-25px mb-15px fs-15px btn-lg" (click)="clickBuyDESO()">

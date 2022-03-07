@@ -14,7 +14,12 @@
       (click)="closeAuction()"
       [disabled]="closingAuction"
     >
-      {{ closingAuction ? "Closing auctions" : "Close my auctions" }}
+      <ng-template [ngIf]="closingAuction">
+        {{ "Closing auctions" | translate }}
+      </ng-template>
+      <ng-template [ngIf]="!closingAuction">
+        {{ "Close my auctions" | translate }}
+      </ng-template>
     </button>
     <div *ngIf="closingAuction" class="pl-15px fs-15px">
       {{ auctionCounter }} of {{ auctionTotal }} {{ "closed" | translate }}

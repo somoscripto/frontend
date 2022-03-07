@@ -27,8 +27,8 @@ import { FeedComponent } from "./feed/feed.component";
 import { BsModalRef, BsModalService } from "ngx-bootstrap/modal";
 import Swal from "sweetalert2";
 import Timer = NodeJS.Timer;
-import {fromWei, Hex, toBN, toHex, toWei} from "web3-utils";
-import {BN} from "ethereumjs-util";
+import { fromWei, Hex, toBN, toHex, toWei } from "web3-utils";
+import { BN } from "ethereumjs-util";
 
 export enum ConfettiSvg {
   DIAMOND = "diamond",
@@ -99,7 +99,7 @@ export class GlobalVarsService {
   messagesRequestsHoldingsOnly = false;
   messagesRequestsFollowersOnly = false;
   messagesRequestsFollowedOnly = false;
-  messagesDefaultKeyName = "default-key"
+  messagesDefaultKeyName = "default-key";
 
   // Whether or not to show processing spinners in the UI for unmined transactions.
   // TODO: Move into environment.ts
@@ -923,7 +923,7 @@ export class GlobalVarsService {
     this.defaultFeeRateNanosPerKB = 1000.0;
 
     // this.localNode = this.backendApi.GetStorage(this.backendApi.LastLocalNodeKey);
-    this.localNode = 'https://node.somoscripto.net';
+    this.localNode = "https://node.somoscripto.net";
     if (!this.localNode) {
       const hostname = (window as any).location.hostname;
       if (environment.production) {

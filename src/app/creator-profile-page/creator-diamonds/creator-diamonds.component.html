@@ -29,7 +29,7 @@
       <div *ngIf="!isLoading && diamondSummaryList.length == 0" class="row no-gutters pt-10px">
         <div class="d-flex align-items-center" style="margin-bottom: 0">
           <span>
-            @{{ profile.Username }} {{ "has-not" | translate }} {{ activeTab.toLowerCase() }}
+            @{{ profile.Username }} {{ "has-not" | translate }} {{ activeTab.toLowerCase() | translate }}
             {{ "any-diamonds-yet" | translate }}.
             <a [routerLink]="['/' + globalVars.RouteNames.USER_PREFIX, profile.Username]" *ngIf="!showDiamondsGiven">
               &nbsp;{{ "Be-the-first" | translate }}!
